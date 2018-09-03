@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-03T14:47:01.693Z</updated>
+  <updated>2018-09-03T14:52:40.301Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,18 +21,17 @@
     <link href="http://yoursite.com/2018/09/03/Assembly-language/"/>
     <id>http://yoursite.com/2018/09/03/Assembly-language/</id>
     <published>2018-09-03T11:18:35.000Z</published>
-    <updated>2018-09-03T14:47:01.693Z</updated>
+    <updated>2018-09-03T14:52:40.301Z</updated>
     
-    <content type="html"><![CDATA[<p>·汇编语言的组成（3类指令）</p><p>1）汇编指令：有对应的机器码<br>2）伪指令：没有对应的机器码<br>3）其他符号：如+、-、*、/等，没有对应的机器码</p><p>·CPU对储存器的读取</p><p>与芯片进行3类信息的交互：<br>1）储存单元地址<br>2）器件选择，读或写命令<br>3）读或写的数据</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>·汇编语言的组成（3类指令）</strong></p><p>1）汇编指令：有对应的机器码<br>2）伪指令：没有对应的机器码<br>3）其他符号：如+、-、*、/等，没有对应的机器码</p><p><strong>·CPU对储存器的读取</strong></p><p>与芯片进行3类信息的交互：<br>1）储存单元地址<br>2）器件选择，读或写命令<br>3）读或写的数据</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;·汇编语言的组成（3类指令）&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;·汇编语言的组成（3类指令）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;1）汇编指令：有对应的机器码&lt;br&gt;2）伪指令：没有对应的机器码&lt;br&gt;3）其他符号：如+、-、*、/等，没有对应的机器码&lt;/p&gt;
-&lt;p&gt;·CPU对储存器的读取&lt;/p&gt;
-&lt;p&gt;与芯片进行3类信息的交互：&lt;br&gt;1）储存单元地址&lt;b
+&lt;p&gt;&lt;strong&gt;·CPU对储存器的读取&lt;/strong&gt;&lt;
       
     
     </summary>
