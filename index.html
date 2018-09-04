@@ -326,7 +326,7 @@ table th:nth-of-type(9) {
 <tr>
 <th>register</th>
 <th style="text-align:center">Accumulator</th>
-<th style="text-align:right">Counter</th>
+<th>Counter</th>
 <th>Data</th>
 <th>Base</th>
 <th>Stack Pointer</th>
@@ -339,7 +339,7 @@ table th:nth-of-type(9) {
 <tr>
 <td>64-bit</td>
 <td style="text-align:center">RAX</td>
-<td style="text-align:right">RCX</td>
+<td>RCX</td>
 <td>RDX</td>
 <td>RBX</td>
 <td>RSP</td>
@@ -350,7 +350,7 @@ table th:nth-of-type(9) {
 <tr>
 <td>32-bit</td>
 <td style="text-align:center">EAX</td>
-<td style="text-align:right">ECX</td>
+<td>ECX</td>
 <td>EDX</td>
 <td>EBX</td>
 <td>ESP</td>
@@ -361,7 +361,7 @@ table th:nth-of-type(9) {
 <tr>
 <td>16-bit</td>
 <td style="text-align:center">AX</td>
-<td style="text-align:right">CX</td>
+<td>CX</td>
 <td>DX</td>
 <td>BX</td>
 <td>SP</td>
@@ -372,7 +372,7 @@ table th:nth-of-type(9) {
 <tr>
 <td> 8-bit</td>
 <td style="text-align:center">AH/AL</td>
-<td style="text-align:right">CH/CL</td>
+<td>CH/CL</td>
 <td>DH/DL</td>
 <td>BH/BL</td>
 </tr>
@@ -380,6 +380,59 @@ table th:nth-of-type(9) {
 </table>
 <p><strong>·通用寄存器</strong></p>
 <p>1）AX BX CX DX 这四个寄存器存放一般性数据<br>2）这四个通用寄存器都可以分为两个八位寄存器使用（参见上表16-bit和8-bit）<br>   其中，低八位构成AL，高八位构成AH</p>
+<p><strong>·几条汇编指令</strong><br>1）汇编指令举例</p>
+<style>
+table th:first-of-type {
+    width: 100px;
+}
+table th:nth-of-type(2) {
+    width: 100px;
+}
+</style> 
+
+<table>
+<thead>
+<tr>
+<th>汇编指令</th>
+<th style="text-align:center">控制CPU完成的操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mov ax,18</td>
+<td style="text-align:center">AX=18</td>
+</tr>
+<tr>
+<td>mov ah,78</td>
+<td style="text-align:center">AH=78</td>
+</tr>
+<tr>
+<td>mov al,8</td>
+<td style="text-align:center">AL=8</td>
+</tr>
+<tr>
+<td>add ax,9</td>
+<td style="text-align:center">AX+=9</td>
+</tr>
+<tr>
+<td>mov ax,bx</td>
+<td style="text-align:center">AX=BX</td>
+</tr>
+<tr>
+<td>mov al,bh</td>
+<td style="text-align:center">AL=BH</td>
+</tr>
+<tr>
+<td>add ax,bx</td>
+<td style="text-align:center">AX+=BX</td>
+</tr>
+<tr>
+<td>add bh,al</td>
+<td style="text-align:center">BH+=AL</td>
+</tr>
+</tbody>
+</table>
+<p>2）注意事项：<br>   16位寄存器中，若是数据值相加超过4位十六进制的数据，则只保存低四位的十六进制数据。<br>   当16位寄存器被用作两个八位寄存器时，若寄存器数据值超过两位十六进制的数据，则只保存低二位的十六进制数据（若是AL寄存器中数据超过内存，高位不是真的被CPU丢失）<br>   指令的两个操作对象的位数应该一致，而：<br>      mov ax,bl<br>      mov bh,ax<br>      mov al,2000（超出范围）<br>      add al,100H（超出范围）<br>   都是错误的指令</p>
 
           
         
