@@ -90,7 +90,7 @@
 <meta property="og:description" content="初学汇编语言的笔记，方便日后深入学习。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
-<meta property="og:updated_time" content="2018-09-05T08:30:32.634Z">
+<meta property="og:updated_time" content="2018-09-05T14:42:28.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。">
@@ -320,7 +320,7 @@
 
           
               <div class="post-description">
-                  初学汇编语言的笔记，方便日后深入学习。
+                  <center>初学汇编语言的笔记，方便日后深入学习。</center>
               </div>
           
 
@@ -477,7 +477,16 @@ table th:nth-of-type(2) {
 <p><strong>·段地址</strong></p>
 <p>1）“段地址”划分来自CPU，不是内存本身分段。<br>2）CPU可以用不同的段地址和偏移地址形成同一个物理地址。<br>3）给定段地址，仅用偏移地址寻址最多可寻64KB个内存单元。</p>
 <p><strong>·段寄存器</strong></p>
-<p>1）8086CPU有四个段寄存器：CS、DS、SS、ES。<br>2）CS：代码段寄存器（段地址），IP：指令指针寄存器（偏移地址）<br>3）<img src="/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png" title="8086PC读取和执行指令的相关部件"></p>
+<p>1）8086CPU有四个段寄存器：CS、DS、SS、ES。<br>2）CS：代码段寄存器（段地址），IP：指令指针寄存器（偏移地址）。<br>3）<img src="/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png" title="8086PC读取和执行指令的相关部件"><br>4）8086CPU工作过程：<br>   从CS:IP之乡的内存单元读取指令，指令进入指令缓冲区；<br>   IP = IP + 所读取的指令长度，从而指向下一条指令；<br>   执行指令。重复以上过程。<br>5）CPU只认被CS:IP指向的内存单元的内容为指令。</p>
+<p><strong>·修改CS、IP的指令</strong></p>
+<p>1）同时修改CS、IP的内容：“jmp 段地址：偏移地址”；<br>2）只修改IP的内容：“jmp 某一合法寄存器”（用寄存器里的值修改IP，eg: jmp ax）。</p>
+<hr>
+<h1 id="寄存器（内存访问）"><a href="#寄存器（内存访问）" class="headerlink" title="寄存器（内存访问）"></a>寄存器（内存访问）</h1><p><strong>·DS和[address]</strong></p>
+<p>1）DS段寄存器通常来存放要访问的数据的段地址。<br>2）“[]”表示ds中的数据为内存单元的段地址，“[address]”中的“address”表示偏移地址。<br>3）假设读取10000H单元的内容（字节型数据的传送）：<br>   mov bx,1000H<br>   mov ds,bx<br>   mov <strong>al</strong>,[0]（使用mov指令将一个内存单元中的<strong>8位</strong>字节数据送入一个8位寄存器中）<br>   ds是段寄存器，不能直接传入1000H，只能用一个寄存器来进行中转。<br>4）字的传送：<br>   eg:<br>   mov bx,1000H<br>   mov ds,bx<br>   mov <strong>ax</strong>,[0]      ;1000：0处的<strong>16位</strong>字型数据送入ax<br>   mov [0],<strong>cx</strong>      ;将cx中的<strong>16位</strong>字数据传送到1000：0处</p>
+<p><strong>·mov、add、sub指令</strong></p>
+<p>1）这三个指令都带有两个操作对象。<br>2）以mov为例，mov、add、sub指令可以有以下几种形式：<br>   <strong>mov 寄存器，数据<br>   mov 寄存器，寄存器<br>   mov 寄存器，内存单元<br>   mov 内存单元，寄存器</strong><br>4）但是mov还存在以下四种形式：<br>   mov 段寄存器，寄存器<br>   mov 寄存器，段寄存器<br>   mov 内存单元，段寄存器<br>   mov 段寄存器，内存单元<br>5）add，sub指令不能对段寄存器进行操作。</p>
+<p><strong>·栈</strong></p>
+<p>1）栈是一种具有特殊访问方式的存储空间：最后进入这个空间的数据，最先出去（LIFO）。</p>
 
       
     </div>
@@ -655,7 +664,7 @@ table th:nth-of-type(2) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li></ol></div>
             
 
           </div>
