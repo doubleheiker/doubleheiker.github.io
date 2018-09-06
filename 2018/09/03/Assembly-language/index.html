@@ -91,7 +91,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/push和pop.png">
-<meta property="og:updated_time" content="2018-09-06T09:56:27.448Z">
+<meta property="og:updated_time" content="2018-09-06T09:58:05.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。">
@@ -497,7 +497,8 @@ table th:nth-of-type(2) {
 <p>1）segment和ends伪指令：这是一对成对使用的伪指令，作用是定义一个段毒啊，其格式为：<br>   段名 segment    ；段从此处开始<br>       :<br>   段名 ends       ；段到此处结束<br>2）程序是由多个段组成的，指令、数据、栈被划分到了不同的段中。<br>3）end：汇编程序结束标记。<br>4）assume：假设某一段寄存器和程序中的某一个用segment…ends定义的段相关联，例如：<br>   assume cs: 代码段的名字 将一个代码段和CS寄存器联系起来。</p>
 <p><strong>·程序返回</strong></p>
 <p>1）指令：<br>   mov ax,4c00H<br>   int 21H</p>
-
+<hr>
+<h1 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h1>
       
     </div>
     
@@ -674,7 +675,7 @@ table th:nth-of-type(2) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li></ol></div>
             
 
           </div>
