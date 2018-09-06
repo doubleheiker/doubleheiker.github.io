@@ -90,7 +90,8 @@
 <meta property="og:description" content="初学汇编语言的笔记，方便日后深入学习。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
-<meta property="og:updated_time" content="2018-09-05T14:42:28.568Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/push和pop.png">
+<meta property="og:updated_time" content="2018-09-06T07:30:32.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。">
@@ -486,7 +487,12 @@ table th:nth-of-type(2) {
 <p><strong>·mov、add、sub指令</strong></p>
 <p>1）这三个指令都带有两个操作对象。<br>2）以mov为例，mov、add、sub指令可以有以下几种形式：<br>   <strong>mov 寄存器，数据<br>   mov 寄存器，寄存器<br>   mov 寄存器，内存单元<br>   mov 内存单元，寄存器</strong><br>4）但是mov还存在以下四种形式：<br>   mov 段寄存器，寄存器<br>   mov 寄存器，段寄存器<br>   mov 内存单元，段寄存器<br>   mov 段寄存器，内存单元<br>5）add，sub指令不能对段寄存器进行操作。</p>
 <p><strong>·栈</strong></p>
-<p>1）栈是一种具有特殊访问方式的存储空间：最后进入这个空间的数据，最先出去（LIFO）。</p>
+<p>1）栈是一种具有特殊访问方式的存储空间：最后进入这个空间的数据，最先出去（LIFO）。<br>2）入栈（push）和出栈（pop）都是以字为单位进行的。<br>3）<img src="/2018/09/03/Assembly-language/push和pop.png"><br>4）段寄存器SS：存放栈顶的段地址；寄存器SP：存放栈顶的偏移地址；<strong>任意时刻，SS:SP指向栈顶元素</strong>。<br>5）栈空，SS:SP指向栈空间最高地址单元的下一个单元。<br>6）一个数据出栈后，该地址单元的数据依然存在，只是不在栈中，当下次有数据入栈时，它将被覆盖。<br>7）8086CPU不保证对栈操作是否超界，栈顶超界将会覆盖栈外数据。</p>
+<p><strong>·push和pop指令</strong></p>
+<p>1）push指令和pop指令格式有如下形式（以push为例）：<br>   push 寄存器<br>   push 段寄存器<br>   push 内存单元<br>2）push指令执行步骤：（1）SP=SP-2；（2）向SS:SP指向的字单元送入数据。<br>3）pop指令执行步骤：（1）从SS:SP指向的字单元读取数据（2）SP=SP+2。<br>4）push和pop指令中修改的只是SP，所以栈顶的变化范围最大为：0-FFFFH。</p>
+<p><strong>·段的综述</strong></p>
+<p>1）将一段连续的内存定义为一个段，用段地址指示段，偏移地址访问段内单元，数据段、代码段、栈段都是我们自己定义的。<br>2）数据段：段地址存放在DS中，用mov,add,sub等访问内存单元的指令时，CPU数据段的内容当作数据访问。<br>3）代码段：段地址存放在CS中，段中第一条指令的偏移地址放在IP中，CPU就执行代码段中的指令。<br>4）栈段：段地址存放在SS中，栈顶单元的偏移地址放在SP中，CPU执行栈操作时将我们定义的栈段当作占空间来用。<br>5）同一段内存，同时可以是代码段、栈段和数据段，也可以什么都不是，关键在于CS、IP、SS、SP、DS的指向。</p>
+<hr>
 
       
     </div>
