@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="初学汇编语言的笔记，方便日后深入学习。">
+<meta name="description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
 <meta name="keywords" content="assembly language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Assembly language">
 <meta property="og:url" content="http://yoursite.com/2018/09/03/Assembly-language/index.html">
 <meta property="og:site_name" content="asKylin">
-<meta property="og:description" content="初学汇编语言的笔记，方便日后深入学习。">
+<meta property="og:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/push和pop.png">
-<meta property="og:updated_time" content="2018-09-06T09:58:05.922Z">
+<meta property="og:updated_time" content="2018-09-06T14:57:41.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
-<meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。">
+<meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
 <meta name="twitter:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
 
 
@@ -321,7 +321,7 @@
 
           
               <div class="post-description">
-                  <center>初学汇编语言的笔记，方便日后深入学习。</center>
+                  <center>初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽</center>
               </div>
           
 
@@ -498,7 +498,10 @@ table th:nth-of-type(2) {
 <p><strong>·程序返回</strong></p>
 <p>1）指令：<br>   mov ax,4c00H<br>   int 21H</p>
 <hr>
-<h1 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h1>
+<h1 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h1><p><strong>·约定两个符号</strong><br>1）“（ ）”：表示一个寄存器或者内存单元里的内容。<br>2）“idata”：表示常量。</p>
+<p><strong>·[BX]</strong><br>1）同[0]一样，[bx]也表示一个内存单元，只是它的偏移地址在bx中。<br>2）bx中存放的数据作为一个偏移地址EA，段地址SA默认在ds中。</p>
+<p><strong>·Loop指令</strong><br>1）loop指令格式：loop 标号；<strong>通常</strong>用loop指令来实现循环功能，cx中存放循环次数。<br>2）eg:<br>   mov ax,2<br>   mov cx,11<br>s: add ax,ax<br>   loop s<br>   mov ax,4c00h<br>   int 21h<br>3）标号代表一个地址，如上例s标识了一个地址，这个地址处有一条指令：add ax,ax.<br>4）CPU执行 loop s 的时候，进行两步操作：<br>   （1）（cx）=（cx）- 1<br>   （2）判断cx中的值，不为0则转至标号s所标识的地址处执行，如果为零则执行下一条指令。</p>
+
       
     </div>
     
