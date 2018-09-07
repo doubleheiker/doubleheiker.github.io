@@ -91,7 +91,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/8086PC读取执行指令关键部件.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/push和pop.png">
-<meta property="og:updated_time" content="2018-09-06T14:57:41.006Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/多个段举例.png">
+<meta property="og:updated_time" content="2018-09-07T13:00:19.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
@@ -501,6 +502,26 @@ table th:nth-of-type(2) {
 <h1 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h1><p><strong>·约定两个符号</strong><br>1）“（ ）”：表示一个寄存器或者内存单元里的内容。<br>2）“idata”：表示常量。</p>
 <p><strong>·[BX]</strong><br>1）同[0]一样，[bx]也表示一个内存单元，只是它的偏移地址在bx中。<br>2）bx中存放的数据作为一个偏移地址EA，段地址SA默认在ds中。</p>
 <p><strong>·Loop指令</strong><br>1）loop指令格式：loop 标号；<strong>通常</strong>用loop指令来实现循环功能，cx中存放循环次数。<br>2）eg:<br>   mov ax,2<br>   mov cx,11<br>s: add ax,ax<br>   loop s<br>   mov ax,4c00h<br>   int 21h<br>3）标号代表一个地址，如上例s标识了一个地址，这个地址处有一条指令：add ax,ax.<br>4）CPU执行 loop s 的时候，进行两步操作：<br>   （1）（cx）=（cx）- 1<br>   （2）判断cx中的值，不为0则转至标号s所标识的地址处执行，如果为零则执行下一条指令。</p>
+<p><strong>·汇编程序中的一些小变动</strong></p>
+<p>1）用一个长度位1字节地内存单元向16位寄存器赋值（如把ffff:0006单元给ax赋值），则应该另令(ah)=0,(al)=(ffff6H)。<br>2）在汇编程序中，数据不能以字母开头，例如代码中mov ax,0ffffh，不能写成mov ax,ffffh。<br>3）汇编程序中，指令“mov ax,[0]”被当作“mov ax,0”处理，因此有如下两种方法实现将内存单元中的数据送入寄存器（举例说明）：<br>   mov al,ds:[0]<br>   mov al,[bx]<br>   mov al,ds:[bx]</p>
+<p><strong>·段前缀</strong></p>
+<p>1）出现在访问内存单元的指令中，用于显式地指明内存单元的段地址，形如“mov al,ds:[bx]”，在汇编语言中称为段前缀。<br>2）将一段内存单元的数据复制到另一段单元中，显式使用段前缀，可以提高程序效率。</p>
+<hr>
+<h1 id="包含多个段的程序"><a href="#包含多个段的程序" class="headerlink" title="包含多个段的程序"></a>包含多个段的程序</h1><p><strong>·在代码段中使用数据</strong></p>
+<p>1）end的另一作用：指明编译器程序入口，用法：end 标号<br>2）在代码段中使用数据可以使用如下程序框架：<br>   assume cs:code<br>   code segment<br>           :<br>           :<br>           数据<br>           :<br>           :<br>   start:<br>           :<br>           :<br>           代码<br>           :<br>           :<br>   code ends<br>   end start<br>   来指明CPU从何处开始执行程序。</p>
+<p><strong>·在代码段中使用栈</strong><br>1）在代码段中使用栈挥着数据实质上都是开辟空间。<br>2）在代码段中使用栈可以使用如下程序框架：<br>   assume cs:code<br>   code segment<br>           :<br>           :<br>           数据<br>           栈空间<br>           :<br>           :<br>   start:<br>           :<br>           :<br>           代码<br>           :<br>           :<br>   code ends<br>   end start<br>   来指明CPU从何处开始执行程序。</p>
+<p><strong>·将数据、代码、栈放入不同的段</strong></p>
+<p>1）定义多个段。eg：<br>   assume cs:code,ds:data,ss:stack<br>2）对段地址的引用：段名就相当于标号，它代表了段地址。eg:<br>   mov ax,data ;将名称为“data”的段地址送入ax。<br>3）<img src="/2018/09/03/Assembly-language/多个段举例.png"></p>
+<hr>
+<h1 id="更灵活的定位内存地址的方法"><a href="#更灵活的定位内存地址的方法" class="headerlink" title="更灵活的定位内存地址的方法"></a>更灵活的定位内存地址的方法</h1><p><strong>·and和or指令</strong></p>
+<p>1）and指令：逻辑与指令，按位进行与运算。该指令可以将操作对象的相应位设为0，其他位不变。<br>2）or指令：逻辑或指令，按位进行或运算。该指令可以将操作对象的相应位设为1，其他未不变。<br>3）eg:<br>   mov al,01100011B<br>   and al,00111011B    执行后al=00100011B</p>
+<p>   mov al,01100011B<br>   or  al,00111011B    执行后al=01111011B</p>
+<p><strong>·以字符形式给出的数据</strong></p>
+<p>1）用’……’的方式指明数据是以字符的形式给出的，编译器将其转化为ASCII码。<br>2）eg:<br>   db ‘unIX’     ；相当于“db 75H,6EH,49H,58H”<br>   mov al,’a’    ；相当于“mov al,61H”</p>
+<p><strong>·大小写转换问题</strong></p>
+<p>1）除了大写字母=小写字母-20H外，可以用and 11011111B将小写转换为大写字母。<br>2）可用or 01100000B将大写转换为小写字母。</p>
+<p><strong>·[bx+idata]</strong></p>
+<p>1）[bx+idata]表示一个偏移地址为(bx)+idata的内存单元。<br>2）常用格式：<br>   mov ax,[bx+idata]<br>   mov ax,[idata+bx]<br>   mov ax,idata[bx]<br>   mov ax,[bx].idata</p>
 
       
     </div>
@@ -678,7 +699,7 @@ table th:nth-of-type(2) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包含多个段的程序"><span class="nav-number">6.</span> <span class="nav-text">包含多个段的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的定位内存地址的方法"><span class="nav-number">7.</span> <span class="nav-text">更灵活的定位内存地址的方法</span></a></li></ol></div>
             
 
           </div>
