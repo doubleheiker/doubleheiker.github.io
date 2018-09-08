@@ -94,7 +94,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/多个段举例.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/sidi举例1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/sidi举例2.png">
-<meta property="og:updated_time" content="2018-09-07T14:45:03.869Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/寻址方式.png">
+<meta property="og:updated_time" content="2018-09-08T06:14:34.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
@@ -535,7 +536,23 @@ table th:nth-of-type(2) {
 <p>1）[bx+si]和[bx+di]含义相似，以[bx+si]为例，其表示一个偏移地址位(bx)+(si)的内存单元。</p>
 <p><strong>·[bx+si+idata]和[bx+di+idata]</strong></p>
 <p>1）[bx+si+idata]和[bx+di+idata]含义相似，以[bx+si+idata]为例，其表示一个偏移地址位(bx)+(si)+idata的内存单元。<br>2）常用格式：<br>   mov ax,[bx+idata+si]<br>   mov ax,[idata+bx+si]<br>   mov ax,idata[bx][si]<br>   mov ax,[bx].idata[si]<br>   mov ax,[bx][si].200</p>
-
+<hr>
+<h1 id="数据的位置和长度"><a href="#数据的位置和长度" class="headerlink" title="数据的位置和长度"></a>数据的位置和长度</h1><p><strong>·约定两个描述性符号</strong></p>
+<p>1）reg：寄存器<br>2）sreg：段寄存器</p>
+<p><strong>·bx、si、di、bp</strong></p>
+<p>1）在8086CPU中只有这四个寄存器可以用在“[…]”中来进行内存单元的寻址。<br>2）在“[…]”中，这四个寄存器可以单个出现，或只能以4种组合出现：bx和si、bx和di、bp和si、bp和di。<br>3）在“[…]”中使用寄存器bp，且指令中没有显性地给出段地址，则段地址默认在ss中。</p>
+<p><strong>·寻址方式</strong></p>
+<p>1）<img src="/2018/09/03/Assembly-language/寻址方式.png" title="寻址方式小结"></p>
+<p><strong>·数据的长度</strong></p>
+<p>1）通过寄存器名指明处理数据的尺寸。<br>   eg:<br>   mov ax 1  ;字操作<br>   mox al,bl ;字节操作<br>2）在没有寄存器名存在的情况下，用操作符X ptr指明内存单元的长度，X在汇编指令中可以为word或byte。<br>   eg:<br>   mov word ptr ds:[0],1   ;指明指令访问的内存单元是一个字单元<br>   add byte ptr [bx],2     ;指明指令访问的内存单元是一个字节单元</p>
+<p><strong>·div指令</strong></p>
+<p>1）div是除法指令。需要注意以下问题：<br>（1）除数：有8位和16位两种，在一个reg或内存单元中；<br>（2）被除数：默认放在AX或DX和AX中，除数为8位，被除数则为16位，默认在AX中存放；除数为16位，被除数则为32位，DX存放高16位，AX存放低16位。<br>（3）除数为8位，AL存储商，AH存储余数；除数为16位，AX存储商，DX存储余数。<br>2）格式：div reg或者div 内存单元。</p>
+<p><strong>·伪指令db、dw、dd</strong></p>
+<p>1）db: define btye<br>2）dw: define word<br>3）dd: define double word（双字型数据，占两个字）</p>
+<p><strong>·dup</strong></p>
+<p>1）dup操作符的作用：进行数据重复。<br>2）用法：<br>   db 3 dup (0)      ;定义了三个值都是0字节<br>   db 3 dup (0,1,2)  ;定义了九个字节，他们是0、1、2、0、1、2、0、1、2</p>
+<hr>
+<h1 id="转移指令的原理"><a href="#转移指令的原理" class="headerlink" title="转移指令的原理"></a>转移指令的原理</h1>
       
     </div>
     
@@ -712,7 +729,7 @@ table th:nth-of-type(2) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包含多个段的程序"><span class="nav-number">6.</span> <span class="nav-text">包含多个段的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的定位内存地址的方法"><span class="nav-number">7.</span> <span class="nav-text">更灵活的定位内存地址的方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包含多个段的程序"><span class="nav-number">6.</span> <span class="nav-text">包含多个段的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的定位内存地址的方法"><span class="nav-number">7.</span> <span class="nav-text">更灵活的定位内存地址的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的位置和长度"><span class="nav-number">8.</span> <span class="nav-text">数据的位置和长度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转移指令的原理"><span class="nav-number">9.</span> <span class="nav-text">转移指令的原理</span></a></li></ol></div>
             
 
           </div>
