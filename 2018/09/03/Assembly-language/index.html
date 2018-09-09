@@ -97,7 +97,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/寻址方式.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/offset.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/转移位移的计算方法.png">
-<meta property="og:updated_time" content="2018-09-08T15:42:10.807Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/flag各位.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/无符号.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/debug.png">
+<meta property="og:updated_time" content="2018-09-09T16:45:12.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
@@ -575,6 +578,47 @@ table th:nth-of-type(2) {
 <hr>
 <h1 id="CALL和RET指令"><a href="#CALL和RET指令" class="headerlink" title="CALL和RET指令"></a>CALL和RET指令</h1><p><strong>·ret和retf</strong></p>
 <p>1）ret指令用栈中的数据，修改IP的内容，实现近转移；ret指令实现下面两步操作：<br>   (IP)=((ss)<em>16+(sp))<br>   (sp)=(sp)+2<br>   相当于进行：pop IP<br>2）retf指令用栈中的数据，修改CS和IP的内容，实现远转移；retf指令实现4步操作：<br>   (IP)=((ss)</em>16+(sp))<br>   (sp)=(sp)+2<br>   (CS)=((ss)*16+(sp))<br>   (sp)=(sp)+2<br>   相当于进行：pop IP pop CS</p>
+<p><strong>·call指令</strong></p>
+<p>1）执行call指令时，先将当前IP或CS和IP压入栈中，再进行转移。<br>2）call指令不能实现短转移。</p>
+<p><strong>·根据位移进行转移的call指令</strong></p>
+<p>1）call 标号（将当前的IP压栈后，转到标号处执行指令）。<br>2）CPU执行“call 标号”时，相当于进行：<br>   push IP<br>   jmp near ptr 标号</p>
+<p><strong>·转移的目的地址在指令中的call指令</strong></p>
+<p>1）call far ptr 标号（实现段间转移）。<br>2）CPU执行“call far ptr 标号”时，相当于进行：<br>   push CS<br>   push IP<br>   jmp far ptr 标号</p>
+<p><strong>·转移地址在寄存器中的call指令</strong></p>
+<p>1）call 16位reg。<br>2）CPU执行“call 16位reg”时，相当于进行：<br>   push IP<br>   jmp 16位reg</p>
+<p><strong>·转移地址在内存中的call指令</strong></p>
+<p>1）call word ptr 内存单元地址<br>2）CPU执行“call word ptr 内存单元地址”时，相当于进行：<br>   push IP<br>   jmp word ptr 内存单元地址<br>3）call dword ptr 内存单元地址<br>4）CPU执行“call dword ptr 内存单元地址”时，相当于进行：<br>   push CS<br>   push IP<br>   jmp dword ptr 内存单元地址</p>
+<p><strong>·call和ret配合使用</strong></p>
+<p>1）实现子程序（函数）的机制，框架如下：<br>   标号：<br>      指令<br>      ret<br>2）当往子程序（函数）传参时，常用的方法是用栈传递参数；传字符串时，将首地址存放在寄存器中传递给子程序。<br>3）在子程序（函数）中用到相同的寄存器时，一般把子程序中的寄存器中的值在子程序开始时存入栈中，在子程序返回前把值出栈给相应寄存器。</p>
+<p><strong>·mul指令</strong></p>
+<p>1）mul乘法指令，需要注意以下两点：<br>（1）相乘的两个数位必须一样（8位和8位相乘），如果是8位，一个默认在AL存放，另一个存放在8位reg或内存字节单元中；如果是16位，一个默认存在AX中，另一个放在16位reg或内存字单元中。<br>（2）结果：如果是8位乘法，结果默认放在AX中；如果是16位乘法，结果高位默认存放在DX中，低位在AX中存放。<br>2）格式：mul reg；mul 内存单元（内存单元可以用不同的寻址方式给出）。<br>   eg：<br>   mov ax,1000<br>   mov bx,10000<br>   mul bx</p>
+<hr>
+<h1 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h1><p><strong>·概述</strong></p>
+<p>1）作用：<br>   用来存储相关指令的某些执行结果；<br>   用来为CPU执行相关指令提供行为依据；<br>   用来控制CPU的相关指令工作方式；<br>2）标志寄存器（flag寄存器）按位起作用：<br><img src="/2018/09/03/Assembly-language/flag各位.png" title="flag寄存器各位示意图"><br>3）flag中空位没有使用。</p>
+<p><strong>·ZF标志</strong></p>
+<p>1）ZF，零标志位。它记录相关指令执行后结果是否为零。结果为零，zf=1；反之，zf=0。<br>2）在8086CPU中一般运算指令如add、sub、and等的执行会影响标志寄存器，而传送寄存器如mov、push、pop大都对标志寄存器没有影响。</p>
+<p><strong>·PF标志</strong></p>
+<p>1）PF，奇偶标志位。它记录相关指令执行后结果所有bit位中1的个数是否为偶数。偶数pf=1；反之pf=0。</p>
+<p><strong>·SF标志</strong></p>
+<p>1）SF，符号标志位。它记录相关指令执行后记过是否为负。结果为负，sf=1；反之，sf=0。<br>2）当我们把数据当作有符号数来运算时，可以通过sf判断结果正负；若把数据当作无符号数来运算，sf的值没有意义，虽然相关指令影响了它的值。</p>
+<p><strong>·CF标志</strong></p>
+<p>1）CF，进位标志位。在进行<strong>无符号</strong>数运算时，它记录运算结果的最高有效位向更高位的进位值，或从更高位的借位值。进位或借位cf=1。<br>2）eg：<br>   mov al,98H<br>   add al,al    ;执行后：(al)=30H,CF=1,CF记录了从最高有效位向更高位的进位值。<br>   mov al,97H<br>   sub al,98H   ;执行后：(al)=FFH,CF=1,CF记录了向更高位的借位值。</p>
+<p><strong>·OF标志</strong></p>
+<p>1）OF，溢出标志位。记录<strong>有符号</strong>数运算结果是否发生了溢出。如果溢出，of=1；反之，of=0。</p>
+<p><strong>adc指令</strong></p>
+<p>1）adc是带进位加法指令，它利用了CF位上的进位值。<br>2）指令格式：adc 操作对象1，操作对象2<br>3）功能：操作对象1 = 操作对象1 + 操作对象2 + CF<br>   eg:<br>   adc ax,bx实现：(ax)=(ax)+(bx)+CF<br>   相当于：低位相加，高位相加再加上低位相加产生的进位值。<br>4）adc指令执行后也可能产生进位值。</p>
+<p><strong>·sbb指令</strong></p>
+<p>1）sbb是带借位减法指令，它利用了CF位上的进位值。<br>2）指令格式：sbb 操作对象1，操作对象2<br>3）功能：操作对象1 = 操作对象1 - 操作对象2 - CF<br>   eg:<br>   sbb ax,bx实现：(ax)=(ax)-(bx)-CF</p>
+<p><strong>·cmp指令</strong></p>
+<p>1）cmp是比较指令，功能相当于减法指令，但是不保存结果。<br>2）格式：cmp 操作对象1，操作对象2<br>3）cmp指令可以对无符号数间和有符号数间进行比较。<br>4）以cmp ah,bh为例，总结CPU在执行cmp指令后，sf和of的值是如何说明比较结果的：<br>（1）如果sf=1，而of=0；所以(ah)&lt;(bh)。<br>（2）如果sf=1，而of=1；所以(ah)&gt;(bh)。<br>（3）如果sf=0，而of=1；所以(ah)&lt;(bh)。<br>（4）如果sf=0，而of=0；所以(ah)&gt;=(bh)。</p>
+<p><strong>·检测比较结果的条件转移指令</strong></p>
+<p>1）无符号数（检测zf，cf的值）：<br><img src="/2018/09/03/Assembly-language/无符号.png" title="常用的根据无符号数的比较结果进行转移的条件指令"><br>2）将cmp和je等指令配合使用，与高级语言中的if语句相似。<br>   eg:<br>   cmp ah,bh<br>   je s<br>   add ah,bh<br>   jmp short ok<br>   s:add ah,ah<br>   ok:…</p>
+<p><strong>·DF标志和传送指令</strong></p>
+<p>1）DF，方向标志位。在串处理指令中，控制每次操作后si，di的增减。（df=0，每次操作后si、di递增；df=1，每次操作后si、di递减）。<br>2）一个串传送指令格式：<br>   movsb（传送内存单元中的字节到es:di，然后根据标志寄存器df位的值，将si、di递增或递减）<br>   movsw（传送内存单元中的字到es:di，然后根据标志寄存器df位的值，将si、di递增2或递减2）<br>3）配合rep使用（rep，根据cx值重复执行后面的串传送指令。）rep movsb可以循环实现(cx)个字符的传送。<br>4）8086CPU提供两个指令对df位进行修改：<br>   cld指令：将df位置0<br>   std指令：将df位置1</p>
+<p><strong>·pushf和popf</strong></p>
+<p>1）pushf：将标志寄存器的值压栈；popf：从栈中弹出数据，送入标志寄存器中。</p>
+<p><strong>·标志寄存器在Debug</strong>中的表示</p>
+<p>1）<img src="/2018/09/03/Assembly-language/debug.png" title="Debug中标志位的表示"></p>
 
       
     </div>
@@ -752,7 +796,7 @@ table th:nth-of-type(2) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包含多个段的程序"><span class="nav-number">6.</span> <span class="nav-text">包含多个段的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的定位内存地址的方法"><span class="nav-number">7.</span> <span class="nav-text">更灵活的定位内存地址的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的位置和长度"><span class="nav-number">8.</span> <span class="nav-text">数据的位置和长度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转移指令的原理"><span class="nav-number">9.</span> <span class="nav-text">转移指令的原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CALL和RET指令"><span class="nav-number">10.</span> <span class="nav-text">CALL和RET指令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器（内存访问）"><span class="nav-number">3.</span> <span class="nav-text">寄存器（内存访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识汇编程序"><span class="nav-number">4.</span> <span class="nav-text">初识汇编程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BX-和loop指令"><span class="nav-number">5.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包含多个段的程序"><span class="nav-number">6.</span> <span class="nav-text">包含多个段的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更灵活的定位内存地址的方法"><span class="nav-number">7.</span> <span class="nav-text">更灵活的定位内存地址的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的位置和长度"><span class="nav-number">8.</span> <span class="nav-text">数据的位置和长度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转移指令的原理"><span class="nav-number">9.</span> <span class="nav-text">转移指令的原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CALL和RET指令"><span class="nav-number">10.</span> <span class="nav-text">CALL和RET指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标志寄存器"><span class="nav-number">11.</span> <span class="nav-text">标志寄存器</span></a></li></ol></div>
             
 
           </div>
