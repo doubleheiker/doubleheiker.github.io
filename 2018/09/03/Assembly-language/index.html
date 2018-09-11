@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/flag各位.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/无符号.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/debug.png">
-<meta property="og:updated_time" content="2018-09-09T16:45:12.151Z">
+<meta property="og:updated_time" content="2018-09-11T04:32:14.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
@@ -577,7 +577,10 @@ table th:nth-of-type(2) {
 <p>1）在之前jmp指令中，“jmp 2000：0100”的转移指令，是在Debug中使用汇编指令，汇编编译器并不认识。</p>
 <hr>
 <h1 id="CALL和RET指令"><a href="#CALL和RET指令" class="headerlink" title="CALL和RET指令"></a>CALL和RET指令</h1><p><strong>·ret和retf</strong></p>
-<p>1）ret指令用栈中的数据，修改IP的内容，实现近转移；ret指令实现下面两步操作：<br>   (IP)=((ss)<em>16+(sp))<br>   (sp)=(sp)+2<br>   相当于进行：pop IP<br>2）retf指令用栈中的数据，修改CS和IP的内容，实现远转移；retf指令实现4步操作：<br>   (IP)=((ss)</em>16+(sp))<br>   (sp)=(sp)+2<br>   (CS)=((ss)*16+(sp))<br>   (sp)=(sp)+2<br>   相当于进行：pop IP pop CS</p>
+<p>1）ret指令用栈中的数据，修改IP的内容，实现近转移；ret指令实现下面两步操作：<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(IP)=((ss)*16+(sp))</span><br><span class="line">(sp)=(sp)+2</span><br></pre></td></tr></table></figure></p>
+<pre><code>相当于进行：pop IP
+</code></pre><p>2）retf指令用栈中的数据，修改CS和IP的内容，实现远转移；retf指令实现4步操作：<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(IP)=((ss)*16+(sp))</span><br><span class="line">(sp)=(sp)+2</span><br><span class="line">(CS)=((ss)*16+(sp))</span><br><span class="line">(sp)=(sp)+2</span><br></pre></td></tr></table></figure></p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相当于进行：pop IP pop CS</span><br></pre></td></tr></table></figure>
 <p><strong>·call指令</strong></p>
 <p>1）执行call指令时，先将当前IP或CS和IP压入栈中，再进行转移。<br>2）call指令不能实现短转移。</p>
 <p><strong>·根据位移进行转移的call指令</strong></p>
@@ -645,6 +648,22 @@ table th:nth-of-type(2) {
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/10/栈/" rel="prev" title="栈">
+                栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -718,7 +737,7 @@ table th:nth-of-type(2) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -740,7 +759,7 @@ table th:nth-of-type(2) {
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
