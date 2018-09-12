@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-11T04:33:37.670Z</updated>
+  <updated>2018-09-12T13:45:55.594Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pwn</title>
+    <link href="http://yoursite.com/2018/09/12/pwn/"/>
+    <id>http://yoursite.com/2018/09/12/pwn/</id>
+    <published>2018-09-12T13:26:33.000Z</published>
+    <updated>2018-09-12T13:45:55.594Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h1 id="Basic-Knowledge"><a href="#Basic-Knowledge" class="headerlink" title="Basic Knowledge"></a>Basic Knowledge</h1><p>·Reverse Engineering<br>·Exploit<br>·x86 Assembly</p><p><strong>·Reverse Engineering</strong><br>Binary to Source code<br>通过逆向工程来发现漏洞<br>静态分析（不运行程序来分析代码）：<br>    工具：<br>        IDA Pro<br>        objdump命令<br>动态分析（运行程序来分析代码）：<br>    工具：<br>        strace命令（跟踪系统函数调用）usage: strace fileaddress<br>        Itrace命令（跟踪所有库调用, library函数）usage:ltrace fileaddress</p><p><strong>·Exploit</strong><br>Vulnerability to Control flow<br>利用漏洞攻击取得程序控制权<br>即pwn<br>Useful Tools</p><ol><li>IDA PRO</li><li><p>GDB</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">usage: gdb -q ./a.out</span><br><span class="line">            run(r)--运行</span><br><span class="line">            disas function_name--反编译某个function</span><br><span class="line">            break(b) *0x80488014--设置断点</span><br><span class="line">            info b--查看断点</span><br><span class="line">            info r--查看寄存器状态</span><br><span class="line">            ni--next instruction</span><br><span class="line">            si--step into</span><br><span class="line">            backtrace(bt)--显示上一层所有stack frame信息</span><br><span class="line">            continue(c)--继续执行到下一个断点</span><br><span class="line">            x/wx address--查看address中的内容</span><br><span class="line">w可以换成b/h/g分别对应1/2/8 Byte</span><br><span class="line">/后可以接数字，表示一次列出几个</span><br><span class="line">第二个x可以换成u/d/s/i 以不同方式表示</span><br><span class="line">u：unsigned int</span><br><span class="line">d：10进制</span><br><span class="line">s：字符串</span><br><span class="line">i：指令</span><br><span class="line">            set *address = value</span><br><span class="line">将address中的值设置为value，一次设4byte</span><br><span class="line">可以将*换成（char/short/long）分别表示 1/2/8 byte</span><br><span class="line">eg:</span><br><span class="line">set *0x8048a060 = 0xdeadbeef</span><br><span class="line">set &#123;int&#125;0x8048a060 = 1337</span><br><span class="line">set $eax = $edx(寄存器间)</span><br><span class="line">            list--列出源代码</span><br><span class="line">            print val--打印变量值</span><br><span class="line">            info local--显示局部变量</span><br><span class="line">            attach pid--附近加一个正在运行的程序</span><br><span class="line">            可以配合ncat或socat进行exploit的调试</span><br><span class="line">ncat -ve ./a.out -kl 8888</span><br><span class="line">echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope</span><br></pre></td></tr></table></figure></li><li><p>Qira</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usage: qira -s ./filename</span><br></pre></td></tr></table></figure></li><li><p>Pwntools</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Basic structure :</span><br><span class="line">from pwn import *</span><br><span class="line">r = remote(&apos;127.0.0.1&apos;,4000)  //地址可变，也可以直接是程序名</span><br><span class="line">r.sendline(...)               //传入程序的内容，若传入地址，需写成如：p32(0x111)格式</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;pwn学习笔记&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="pwn" scheme="http://yoursite.com/categories/pwn/"/>
+    
+    
+      <category term="pwn" scheme="http://yoursite.com/tags/pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>Assembly language</title>
