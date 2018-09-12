@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-10T12:56:05.356Z</updated>
+  <updated>2018-09-11T04:33:37.670Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>栈</title>
-    <link href="http://yoursite.com/2018/09/10/%E6%A0%88/"/>
-    <id>http://yoursite.com/2018/09/10/栈/</id>
-    <published>2018-09-10T12:47:05.000Z</published>
-    <updated>2018-09-10T12:56:05.356Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p># </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;center&gt;学习栈知识&lt;/center&gt;
-    
-    </summary>
-    
-    
-      <category term="programming" scheme="http://yoursite.com/tags/programming/"/>
-    
-  </entry>
   
   <entry>
     <title>Assembly language</title>
