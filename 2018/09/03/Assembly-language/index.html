@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/flag各位.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/无符号.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/03/Assembly-language/debug.png">
-<meta property="og:updated_time" content="2018-09-11T04:33:37.670Z">
+<meta property="og:updated_time" content="2018-09-20T09:40:10.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Assembly language">
 <meta name="twitter:description" content="初学汇编语言的笔记，方便日后深入学习。该博客知识来自《汇编语言》王爽">
@@ -504,7 +504,7 @@ table th:nth-of-type(2) {
 <p>1）将一段连续的内存定义为一个段，用段地址指示段，偏移地址访问段内单元，数据段、代码段、栈段都是我们自己定义的。<br>2）数据段：段地址存放在DS中，用mov,add,sub等访问内存单元的指令时，CPU数据段的内容当作数据访问。<br>3）代码段：段地址存放在CS中，段中第一条指令的偏移地址放在IP中，CPU就执行代码段中的指令。<br>4）栈段：段地址存放在SS中，栈顶单元的偏移地址放在SP中，CPU执行栈操作时将我们定义的栈段当作占空间来用。<br>5）同一段内存，同时可以是代码段、栈段和数据段，也可以什么都不是，关键在于CS、IP、SS、SP、DS的指向。</p>
 <hr>
 <h1 id="初识汇编程序"><a href="#初识汇编程序" class="headerlink" title="初识汇编程序"></a>初识汇编程序</h1><p><strong>·3个伪指令</strong></p>
-<p>1）segment和ends伪指令：这是一对成对使用的伪指令，作用是定义一个段毒啊，其格式为：<br>   段名 segment    ；段从此处开始<br>       :<br>   段名 ends       ；段到此处结束<br>2）程序是由多个段组成的，指令、数据、栈被划分到了不同的段中。<br>3）end：汇编程序结束标记。<br>4）assume：假设某一段寄存器和程序中的某一个用segment…ends定义的段相关联，例如：<br>   assume cs: 代码段的名字 将一个代码段和CS寄存器联系起来。</p>
+<p>1）segment和ends伪指令：这是一对成对使用的伪指令，作用是定义一个段，其格式为：<br>   段名 segment    ；段从此处开始<br>       :<br>   段名 ends       ；段到此处结束<br>2）程序是由多个段组成的，指令、数据、栈被划分到了不同的段中。<br>3）end：汇编程序结束标记。<br>4）assume：假设某一段寄存器和程序中的某一个用segment…ends定义的段相关联，例如：<br>   assume cs: 代码段的名字 将一个代码段和CS寄存器联系起来。</p>
 <p><strong>·程序返回</strong></p>
 <p>1）指令：<br>   mov ax,4c00H<br>   int 21H</p>
 <hr>
