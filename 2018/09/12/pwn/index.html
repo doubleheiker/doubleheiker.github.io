@@ -91,7 +91,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/pwn/ROPchain.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/12/pwn/stack.png">
-<meta property="og:updated_time" content="2018-09-26T14:55:07.172Z">
+<meta property="og:updated_time" content="2018-09-30T15:51:17.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pwn">
 <meta name="twitter:description" content="pwn学习笔记">
@@ -371,7 +371,7 @@
 <p><strong>·DEP</strong><br>数据执行保护，又称NX<br>可写的不可以执行，可执行的不可写</p>
 <p><strong>·PIE</strong><br>地址无关可执行文件<br>    gcc在默认情况下没有开启，编译时加上-fPIC-pie就可以开启<br>    没开启的情况下程序的data段以及code段会是固定的<br>    一旦开启之后data以及code也会跟着ASLR，因此前面说的ret2text/shellcode没有固定的位置可以跳，就变得困难很多。</p>
 <p><strong>·Stack Guard</strong><br>编译器对stack overflow的一种保护机制<br>在函数被调用的时候，先在stack上放canary<br>函数返回前先检查这个值有没有被修改<br>可以有效地防止缓冲区溢出攻击<br><img src="/2018/09/12/pwn/stack.png"><br>如图我们可以看到，在栈中EBP上面有一个canary栈溢出保护，程序在执行返回地址时，会先检查canary的值是否变化，所以若是有栈溢出攻击就会被识别。<br>因此要绕过Stack Guard保护，可以先把Canary的值提取出来，在栈溢出攻击时保持canary的值不变，由此实现栈溢出</p>
-<h3 id="DEP-NX"><a href="#DEP-NX" class="headerlink" title="DEP(NX)"></a>DEP(NX)</h3><p>1）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary ./filename       //查找文件中的‘pop eax(ebx)(ecx)(edx) ; ret’</span><br><span class="line">ROPgadget --binary filename --opcode cd80c3</span><br><span class="line">cd80c3                              //int 0x80;ret</span><br><span class="line">ROPgadget --binary ./filename  --only &apos;pop|ret&apos; | grep &apos;eax&apos; //只查找‘pop eax ; ret’</span><br></pre></td></tr></table></figure></p>
+<h3 id="DEP-NX"><a href="#DEP-NX" class="headerlink" title="DEP(NX)"></a>DEP(NX)</h3><p>1）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary ./filename       //查找文件中的‘pop eax(ebx)(ecx)(edx) ; ret’</span><br><span class="line">ROPgadget --binary filename --opcode cd80c3</span><br><span class="line">ROPgadget --binary rop  --only &apos;int&apos;</span><br><span class="line">cd80c3                              //int 0x80;ret</span><br><span class="line">ROPgadget --binary ./filename  --only &apos;pop|ret&apos; | grep &apos;eax&apos; //只查找‘pop eax ; ret’</span><br><span class="line">ROPgadget --binary rop  --string &apos;/bin/sh&apos;   //查找文件里是否有/bin/sh</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -502,7 +502,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -513,7 +513,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
