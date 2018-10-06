@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="asKylin">
 <meta property="og:description" content="数据结构C语言版每章总结">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-06T02:28:21.783Z">
+<meta property="og:updated_time" content="2018-10-06T02:40:05.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DataStructure">
 <meta name="twitter:description" content="数据结构C语言版每章总结">
@@ -346,7 +346,7 @@
 <p>其中，数据对象和数据关系的定义用伪代码描述，基本操作的定义格式为<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">基本操作名(参数表)</span><br><span class="line">	初始条件：&lt;初始条件描述&gt;</span><br><span class="line">	操作结果：&lt;操作结果描述&gt;</span><br></pre></td></tr></table></figure></p>
 <p>基本操作有两种参数：<br><strong>赋值参数只为操作提供输入值</strong><br><strong>引用参数以&amp;打头，出可提供输入值外，还将返回操作结果</strong></p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong>时间复杂度</strong></h3><p>一般情况下，算法中基本操作重复执行的次数是问题规模n的某个函数f(n)，算法的时间度量记作<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = O(f(n))</span><br></pre></td></tr></table></figure></p>
-<p><strong>时间复杂度分析</strong><br>1）只关注循环执行次数最多的一段代码<br>2）加法法则：总复杂度等于量级最大的那一段代码的复杂度。例如：<br>若 T1(n) = O(f(n)), T2(n) = O(g(n))<br>则 T(n) = T1(n) + T2(n) = max{O(f(n)), O(g(n))} = O(max{f(n),g(n)})<br>3）乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积。例如：<br>若 T1(n) = O(f(n)), T2(n) = O(g(n))<br>则 T(n) = T1(n) x T2(n) = O(f(n)) x O(g(n)) = O(f(n) xg(n))<br><strong>复杂度量级（按数量级递增）</strong><br>多项式量级|非多项式量级<br>—|—<br>常量阶O(1)|指数阶O(2^n)<br>对数阶O(logn)|阶乘阶O(n!)<br>线性阶O(n)|<br>线性对数阶O(nlogn)|<br>平方阶O(n^2)…k次方阶O(n^k)|</p>
+<p><strong>时间复杂度分析</strong><br>1）只关注循环执行次数最多的一段代码<br>2）加法法则：总复杂度等于量级最大的那一段代码的复杂度。例如：<br>若 T1(n) = O(f(n)), T2(n) = O(g(n))<br>则 T(n) = T1(n) + T2(n) = max{O(f(n)), O(g(n))} = O(max{f(n),g(n)})<br>3）乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积。例如：<br>若 T1(n) = O(f(n)), T2(n) = O(g(n))<br>则 T(n) = T1(n) x T2(n) = O(f(n)) x O(g(n)) = O(f(n) xg(n))<br><strong>复杂度量级（按数量级递增）</strong><br>|多项式量级|非多项式量级|<br>|—|—|<br>|常量阶O(1)|指数阶O(2^n)|<br>|对数阶O(logn)|阶乘阶O(n!)|<br>|线性阶O(n)||<br>|线性对数阶O(nlogn)||<br>|平方阶O(n^2)…k次方阶O(n^k)||</p>
 
       
     </div>
