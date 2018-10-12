@@ -1097,7 +1097,7 @@ pre .javascript .function {
 }
 .headband {
   height: 3px;
-  background: #222;
+  background: linear-gradient(90deg, #f79533 0%, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
 }
 .site-meta {
   margin: 0;
@@ -1874,7 +1874,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff0650;
+  background: #857a44;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3167,4 +3167,9 @@ pre .javascript .function {
   .pagination {
     margin: 8px 0 0;
   }
+}
+.site-meta {
+  padding: 20px 0;
+  color: #fff;
+  background: linear-gradient(90deg, #f79533 0%, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
 }
