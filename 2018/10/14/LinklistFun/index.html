@@ -97,7 +97,7 @@
 <meta property="og:description" content="5个常见的单链表操作">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pgmvrm0dk.bkt.clouddn.com/shore.jpg">
-<meta property="og:updated_time" content="2018-10-15T14:35:30.356Z">
+<meta property="og:updated_time" content="2018-11-02T08:23:35.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5 LinkListFun()">
 <meta name="twitter:description" content="5个常见的单链表操作">
@@ -408,7 +408,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://pgmvrm0dk.bkt.clouddn.com/shore.jpg" rel="gallery_cjnaetxo60002hkj9qh56i6jl"
+                 href="http://pgmvrm0dk.bkt.clouddn.com/shore.jpg" rel="gallery_cjnzzuvng0008u0j90c4pv5du"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://pgmvrm0dk.bkt.clouddn.com/shore.jpg" itemprop="contentUrl"/>
               </a>
@@ -425,10 +425,10 @@
 <h1 id="Reverse-LinkList"><a href="#Reverse-LinkList" class="headerlink" title="Reverse LinkList"></a>Reverse LinkList</h1><p>描述：反转一个单链表</p>
 <ol>
 <li><p>迭代</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***** Definition for linklist *****/</span></span><br><span class="line"><span class="comment">/* typedef struct LNode&#123;</span></span><br><span class="line"><span class="comment">	Elemtype data;</span></span><br><span class="line"><span class="comment">	struct LNode *next;</span></span><br><span class="line"><span class="comment"> * &#125;LNode *linklist</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LNode <span class="title">reverseList</span><span class="params">(LNode head)</span> </span>&#123;</span><br><span class="line">        LNode newhead=null;</span><br><span class="line">        LNode now;</span><br><span class="line">        <span class="keyword">while</span>(head!=null)&#123;</span><br><span class="line">            now=head;         <span class="comment">//取头</span></span><br><span class="line">            head=head.next;   <span class="comment">//更新原链头</span></span><br><span class="line">            now.next=newhead; <span class="comment">//插入新链</span></span><br><span class="line">            newhead=now;      <span class="comment">//更新新链头</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***** Definition for linklist *****/</span></span><br><span class="line"><span class="comment">/* typedef struct LNode&#123;</span></span><br><span class="line"><span class="comment">	Elemtype data;</span></span><br><span class="line"><span class="comment">	struct LNode *next;</span></span><br><span class="line"><span class="comment"> * &#125;LNode *linklist</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LNode <span class="title">reverseList</span><span class="params">(linklist head)</span> </span>&#123;</span><br><span class="line">        linklist newhead=null;</span><br><span class="line">        linklist now;</span><br><span class="line">        <span class="keyword">while</span>(head!=null)&#123;</span><br><span class="line">            now=head;         <span class="comment">//取头</span></span><br><span class="line">            head=head.next;   <span class="comment">//更新原链头</span></span><br><span class="line">            now.next=newhead; <span class="comment">//插入新链</span></span><br><span class="line">            newhead=now;      <span class="comment">//更新新链头</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>递归</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LNode <span class="title">reverseList</span><span class="params">(LNode head)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(head==null||head.next==null)<span class="keyword">return</span> head;</span><br><span class="line">         LNode newhead=reverseList(head.next);</span><br><span class="line">         head.next.next=head;</span><br><span class="line">         head.next=null;</span><br><span class="line">         <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LNode <span class="title">reverseList</span><span class="params">(linklist head)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(head==null||head.next==null)<span class="keyword">return</span> head;</span><br><span class="line">         LNode newhead=reverseList(head.next);</span><br><span class="line">         head.next.next=head;</span><br><span class="line">         head.next=null;</span><br><span class="line">         <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <hr>
@@ -472,7 +472,7 @@
   <p><span>本文标题:</span><a href="/2018/10/14/LinklistFun/">5 LinkListFun()</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 asKylin 的个人博客">asKylin</a></p>
   <p><span>发布时间:</span>2018年10月14日 - 19:10</p>
-  <p><span>最后更新:</span>2018年10月15日 - 22:10</p>
+  <p><span>最后更新:</span>2018年11月02日 - 16:11</p>
   <p><span>原始链接:</span><a href="/2018/10/14/LinklistFun/" title="5 LinkListFun()">http://askylin.top/2018/10/14/LinklistFun/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://askylin.top/2018/10/14/LinklistFun/"  aria-label="复制成功！"></i></span>
   </p>
@@ -687,6 +687,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://songdayi.github.io" title="北山有灵" target="_blank">北山有灵</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://milkice.me/" title="Milkice" target="_blank">Milkice</a>
                   </li>
                 
               </ul>
