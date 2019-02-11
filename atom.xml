@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://askylin.top/"/>
-  <updated>2019-02-11T09:30:07.623Z</updated>
+  <updated>2019-02-11T10:12:06.067Z</updated>
   <id>http://askylin.top/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://askylin.top/2019/02/10/DeepLearning/"/>
     <id>http://askylin.top/2019/02/10/DeepLearning/</id>
     <published>2019-02-10T14:02:00.000Z</published>
-    <updated>2019-02-11T09:30:07.623Z</updated>
+    <updated>2019-02-11T10:12:06.067Z</updated>
     
-    <content type="html"><![CDATA[<hr><h1 id="Perceptrons"><a href="#Perceptrons" class="headerlink" title="Perceptrons"></a>Perceptrons</h1><p>输入x1, x2…是二进制输入，产生一个二进制输出。<br>感知器可以用作一种决策器。<br>感知器可以当作NAND门。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output= 0 if w⋅x+b≤0</span><br><span class="line">1 if w⋅x+b&gt;0</span><br></pre></td></tr></table></figure></p><p>权重或者偏差（阈值）轻微的变动会引起结果的很大的变化。<br>假设我们采用感知器（Perceptrons）网络中的所有权重和偏差，并将它们乘以正常数c，c&gt; 0。神经网络的行为不会更改。</p><hr><h1 id="Sigmoid-neurons"><a href="#Sigmoid-neurons" class="headerlink" title="Sigmoid neurons"></a>Sigmoid neurons</h1><p>输入x1, x2…在0~1之间，产生一个在0~1之间的输出。<br>sigmoid函数：σ(z)≡1/1+e^(−z), z ≡ <strong>wx</strong> + b。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output = 1/(1+exp(−∑jwjxj−b))</span><br><span class="line">Δoutput ≈ (∑j∂output/∂wj)Δwj+(∂output/∂b)Δb</span><br></pre></td></tr></table></figure></p><p>权重或者偏差（阈值）轻微的变动会引起结果较小的变化。<br>假设我们采用Sigmoid神经元网络中的所有权重和偏差，并将它们乘以正常数c，c&gt; 0。当c→∞时，神经网络的行为就是感知器网络的行为。</p><hr><h1 id="The-architecture-of-neural-networks"><a href="#The-architecture-of-neural-networks" class="headerlink" title="The architecture of neural networks"></a>The architecture of neural networks</h1><p>输入层：输入神经元<br>输出层：输出神经元<br>隐层：隐层神经元</p><hr><h1 id="留坑待填"><a href="#留坑待填" class="headerlink" title="留坑待填"></a>留坑待填</h1>]]></content>
+    <content type="html"><![CDATA[<hr><h1 id="Perceptrons"><a href="#Perceptrons" class="headerlink" title="Perceptrons"></a>Perceptrons</h1><p>输入x1, x2…是二进制输入，产生一个二进制输出。<br>感知器可以用作一种决策器。<br>感知器可以当作NAND门。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output= 0 if w⋅x+b≤0</span><br><span class="line">1 if w⋅x+b&gt;0</span><br></pre></td></tr></table></figure></p><p>权重或者偏差（阈值）轻微的变动会引起结果的很大的变化。<br>假设我们采用感知器（Perceptrons）网络中的所有权重和偏差，并将它们乘以正常数c，c&gt; 0。神经网络的行为不会更改。</p><hr><h1 id="Sigmoid-neurons"><a href="#Sigmoid-neurons" class="headerlink" title="Sigmoid neurons"></a>Sigmoid neurons</h1><p>输入x1, x2…在0~1之间，产生一个在0~1之间的输出。<br>sigmoid函数：σ(z)≡1/1+e^(−z), z ≡ <strong>wx</strong> + b。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output = 1/(1+exp(−∑jwjxj−b))</span><br><span class="line">Δoutput ≈ (∑j∂output/∂wj)Δwj+(∂output/∂b)Δb</span><br></pre></td></tr></table></figure></p><p>权重或者偏差（阈值）轻微的变动会引起结果较小的变化。<br>假设我们采用Sigmoid神经元网络中的所有权重和偏差，并将它们乘以正常数c，c&gt; 0。当c→∞时，神经网络的行为就是感知器网络的行为。</p><hr><h1 id="The-architecture-of-neural-networks"><a href="#The-architecture-of-neural-networks" class="headerlink" title="The architecture of neural networks"></a>The architecture of neural networks</h1><p>输入层、输入神经元<br>输出层、输出神经元<br>隐层、隐层神经元<br>前馈神经网络：前一层的输出作用于后一层的输入（没有回路）<br>递归神经网络<br>输入和输出神经元的设计通常比较简单。比如一个64x64的灰度图像是否是“9”，则输入神经元有4096个，输出神经元只有一个。 </p><hr><h1 id="A-simple-network-to-classify-handwritten-digits"><a href="#A-simple-network-to-classify-handwritten-digits" class="headerlink" title="A simple network to classify handwritten digits"></a>A simple network to classify handwritten digits</h1><h1 id="留坑待填"><a href="#留坑待填" class="headerlink" title="留坑待填"></a>留坑待填</h1>]]></content>
     
     <summary type="html">
     
@@ -106,9 +106,9 @@
     
       <category term="DataStructure" scheme="http://askylin.top/tags/DataStructure/"/>
     
-      <category term="c++" scheme="http://askylin.top/tags/c/"/>
-    
       <category term="c" scheme="http://askylin.top/tags/c/"/>
+    
+      <category term="c++" scheme="http://askylin.top/tags/c/"/>
     
   </entry>
   
