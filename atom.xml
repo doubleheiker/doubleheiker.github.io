@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://askylin.top/"/>
-  <updated>2019-02-11T01:48:10.391Z</updated>
+  <updated>2019-02-11T06:00:53.913Z</updated>
   <id>http://askylin.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://askylin.top/2019/02/10/DeepLearning/"/>
     <id>http://askylin.top/2019/02/10/DeepLearning/</id>
     <published>2019-02-10T14:02:00.000Z</published>
-    <updated>2019-02-11T01:48:10.391Z</updated>
+    <updated>2019-02-11T06:00:53.913Z</updated>
     
     <content type="html"><![CDATA[<hr><h1 id="Perceptrons"><a href="#Perceptrons" class="headerlink" title="Perceptrons"></a>Perceptrons</h1><p>输入x1, x2…是二进制输入，产生一个二进制输出。<br>感知器可以用作一种决策器。<br>感知器可以当作NAND门。<br>权重或者偏差（阈值）轻微的变动会引起结果的很大的变化。</p><h1 id="Sigmoid-neurons"><a href="#Sigmoid-neurons" class="headerlink" title="Sigmoid neurons"></a>Sigmoid neurons</h1><p>输入x1, x2…在0~1之间，产生一个在0~1之间的输出。<br>sigmoid函数：σ(z)≡1/1+e^(−z), z ≡ <strong>wx</strong> + b。</p><p>权重或者偏差（阈值）轻微的变动会引起结果较小的变化。</p><h1 id="留坑待填"><a href="#留坑待填" class="headerlink" title="留坑待填"></a>留坑待填</h1>]]></content>
     
@@ -108,9 +108,9 @@
     
       <category term="DataStructure" scheme="http://askylin.top/tags/DataStructure/"/>
     
-      <category term="c" scheme="http://askylin.top/tags/c/"/>
-    
       <category term="c++" scheme="http://askylin.top/tags/c/"/>
+    
+      <category term="c" scheme="http://askylin.top/tags/c/"/>
     
   </entry>
   
