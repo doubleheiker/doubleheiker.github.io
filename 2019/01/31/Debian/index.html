@@ -91,15 +91,15 @@
 <meta name="description" content="双系统安装64位Debian系统">
 <meta name="keywords" content="SystemInstall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Install Debian 64-bit on computer">
+<meta property="og:title" content="Install&amp;beautify Debian 64-bit on computer">
 <meta property="og:url" content="http://askylin.top/2019/01/31/Debian/index.html">
 <meta property="og:site_name" content="asKylin">
 <meta property="og:description" content="双系统安装64位Debian系统">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://s311.photo.store.qq.com/psb?/V13BnVsC23MbK8/IToyZ2.OkC5zzcHFysrRKTRnydFi0ia3x6yD6FTYY3I!/r/dDcBAAAAAAAA">
-<meta property="og:updated_time" content="2019-02-13T07:05:01.930Z">
+<meta property="og:updated_time" content="2019-02-15T09:13:55.452Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Install Debian 64-bit on computer">
+<meta name="twitter:title" content="Install&amp;beautify Debian 64-bit on computer">
 <meta name="twitter:description" content="双系统安装64位Debian系统">
 <meta name="twitter:image" content="http://s311.photo.store.qq.com/psb?/V13BnVsC23MbK8/IToyZ2.OkC5zzcHFysrRKTRnydFi0ia3x6yD6FTYY3I!/r/dDcBAAAAAAAA">
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>Install Debian 64-bit on computer | asKylin</title>
+  <title>Install&beautify Debian 64-bit on computer | asKylin</title>
   
 
 
@@ -293,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Install Debian 64-bit on computer</h1>
+          <h1 class="post-title" itemprop="name headline">Install&beautify Debian 64-bit on computer</h1>
         
 
         <div class="post-meta">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  44
+                  295
                 </span>
               
 
@@ -408,7 +408,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://s311.photo.store.qq.com/psb?/V13BnVsC23MbK8/IToyZ2.OkC5zzcHFysrRKTRnydFi0ia3x6yD6FTYY3I!/r/dDcBAAAAAAAA" rel="gallery_cjs2ujqtt0004igj9q3fzuh0m"
+                 href="http://s311.photo.store.qq.com/psb?/V13BnVsC23MbK8/IToyZ2.OkC5zzcHFysrRKTRnydFi0ia3x6yD6FTYY3I!/r/dDcBAAAAAAAA" rel="gallery_cjs5u3udo0001twj9685edwm2"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://s311.photo.store.qq.com/psb?/V13BnVsC23MbK8/IToyZ2.OkC5zzcHFysrRKTRnydFi0ia3x6yD6FTYY3I!/r/dDcBAAAAAAAA" itemprop="contentUrl"/>
               </a>
@@ -423,7 +423,19 @@
       
         <hr>
 <h1 id="制作U盘启动盘"><a href="#制作U盘启动盘" class="headerlink" title="制作U盘启动盘"></a>制作U盘启动盘</h1><p>首先使用格式化工具（我使用的是Diskgenius）将U盘彻底格式化，使用UltraISO将debian系统烧录进U盘<br><img src="/2019/01/31/Debian/烧录系统.png"><br><img src="/2019/01/31/Debian/烧录系统2.png"><br><img src="/2019/01/31/Debian/烧录系统3.png" title="选择USB-HDD+"></p>
-<h1 id="留坑待填"><a href="#留坑待填" class="headerlink" title="留坑待填"></a>留坑待填</h1>
+<h1 id="划分硬盘空间"><a href="#划分硬盘空间" class="headerlink" title="划分硬盘空间"></a>划分硬盘空间</h1><p>使用Diskgenius将硬盘划分出一个50.86G的未分配空间用于Debian系统的安装<br></p>
+<h1 id="在BIOS设置U盘启动优先"><a href="#在BIOS设置U盘启动优先" class="headerlink" title="在BIOS设置U盘启动优先"></a>在BIOS设置U盘启动优先</h1><p>在电脑开机的时候进入BIOS界面，将开机启动选项选择到EFI启动优先，并将安全选项中security boot关闭，保存选项后重启电脑<br><img src="/2019/01/31/Debian/IMG_20190213_161345.jpg"></p>
+<h1 id="安装Debian-9-7"><a href="#安装Debian-9-7" class="headerlink" title="安装Debian 9.7"></a>安装Debian 9.7</h1><p>进入安装界面，选择图像化安装<br><img src="/2019/01/31/Debian/IMG_20190213_161603.jpg"></p>
+<p>语言一路默认<br><img src="/2019/01/31/Debian/IMG_20190213_161603.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_161623.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_161639.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_162345.jpg"></p>
+<p>主机名默认，设置root密码和用户密码<br><img src="/2019/01/31/Debian/IMG_20190213_162411.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_162437.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_162513.jpg"></p>
+<p>磁盘分区，选择划分出来的的空闲空间<br><img src="/2019/01/31/Debian/IMG_20190213_162923.jpg"></p>
+<p>选择<code>Automatically partion the free space</code><br><img src="/2019/01/31/Debian/IMG_20190213_163442.jpg"></p>
+<p>选择<code>All files in one partition</code><br><img src="/2019/01/31/Debian/IMG_20190213_163509.jpg"><br><img src="/2019/01/31/Debian/IMG_20190213_163528.jpg"></p>
+<p>等待安装，出现配置network时，选择<code>yes</code><br><img src="/2019/01/31/Debian/IMG_20190213_164145.jpg"></p>
+<p>我选择了科大源<br><img src="/2019/01/31/Debian/IMG_20190213_164222.jpg"></p>
+<p>等待安装完成，电脑重新启动时拔出U盘，进入Debian系统<br><img src="/2019/01/31/Debian/IMG_20190213_175838.jpg"></p>
+<h1 id="美化系统"><a href="#美化系统" class="headerlink" title="美化系统"></a>美化系统</h1><p>在这里超级推荐一个网站：<br><a href="https://www.gnome-look.org/" target="_blank" rel="noopener">https://www.gnome-look.org/</a><br>我是参照一篇博主的文章对Debian系统进行主题美化，MacX样式，<br>以下是链接：<br><a href="https://blog.csdn.net/zyqblog/article/details/80152016" target="_blank" rel="noopener">https://blog.csdn.net/zyqblog/article/details/80152016</a></p>
+
       
     </div>
     
@@ -450,11 +462,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/01/31/Debian/">Install Debian 64-bit on computer</a></p>
+  <p><span>本文标题:</span><a href="/2019/01/31/Debian/">Install&beautify Debian 64-bit on computer</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 asKylin 的个人博客">asKylin</a></p>
   <p><span>发布时间:</span>2019年01月31日 - 19:01</p>
-  <p><span>最后更新:</span>2019年02月13日 - 15:02</p>
-  <p><span>原始链接:</span><a href="/2019/01/31/Debian/" title="Install Debian 64-bit on computer">http://askylin.top/2019/01/31/Debian/</a>
+  <p><span>最后更新:</span>2019年02月15日 - 17:02</p>
+  <p><span>原始链接:</span><a href="/2019/01/31/Debian/" title="Install&beautify Debian 64-bit on computer">http://askylin.top/2019/01/31/Debian/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://askylin.top/2019/01/31/Debian/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -695,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#制作U盘启动盘"><span class="nav-number">1.</span> <span class="nav-text">制作U盘启动盘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#留坑待填"><span class="nav-number">2.</span> <span class="nav-text">留坑待填</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#制作U盘启动盘"><span class="nav-number">1.</span> <span class="nav-text">制作U盘启动盘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#划分硬盘空间"><span class="nav-number">2.</span> <span class="nav-text">划分硬盘空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在BIOS设置U盘启动优先"><span class="nav-number">3.</span> <span class="nav-text">在BIOS设置U盘启动优先</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Debian-9-7"><span class="nav-number">4.</span> <span class="nav-text">安装Debian 9.7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#美化系统"><span class="nav-number">5.</span> <span class="nav-text">美化系统</span></a></li></ol></div>
             
 
           </div>
