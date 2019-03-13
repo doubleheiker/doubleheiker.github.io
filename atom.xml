@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://askylin.top/"/>
-  <updated>2019-02-25T12:45:52.648Z</updated>
+  <updated>2019-03-13T11:59:58.886Z</updated>
   <id>http://askylin.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tmux+oh-my-tmux</title>
+    <link href="http://askylin.top/2019/03/13/tmux-oh-my-tmux/"/>
+    <id>http://askylin.top/2019/03/13/tmux-oh-my-tmux/</id>
+    <published>2019-03-13T11:17:39.000Z</published>
+    <updated>2019-03-13T11:59:58.886Z</updated>
+    
+    <content type="html"><![CDATA[<hr><blockquote><p>tmux的官方介绍：tmux is a terminal multiplexer: it enables a number of terminals to be created,<br>accessed, and controlled from a single screen. tmux may be detached from a<br>screen and continue running in the background, then later reattached. 总之，tmux可以使你的终端使用体验有极大的提升，还不赶紧来试试！</p></blockquote><h1 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h1><p>首先给出githuib地址：<a href="https://github.com/tmux/tmux" target="_blank" rel="noopener">tmux</a><br>各个系统下的安装命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew install tmux       <span class="comment"># OSX</span></span><br><span class="line">pacman -S tmux          <span class="comment"># archlinux</span></span><br><span class="line">apt-get install tmux    <span class="comment"># Ubuntu</span></span><br><span class="line">yum install tmux        <span class="comment"># Centos</span></span><br></pre></td></tr></table></figure><p>安装完成后，赶紧试试tmux吧：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux                    <span class="comment">#默认名字启用tmux</span></span><br><span class="line">tmux new -s name        <span class="comment">#指定session的名字</span></span><br></pre></td></tr></table></figure><p>在Tmux Session中，<code>&lt;prefix&gt;</code>是tmux的前缀键，所有tmux快捷键都需要先按前缀键。它的默认值是Ctrl+b。<br>比如我们想做到把终端分成两半，如下图：</p><p><a href="tmux-oh-my-tmux\tmux.png">tmux2windows</a></p><p>使用如下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;prefix&gt;%               <span class="comment">#即：先按下ctrl+b(默认前缀)，再按下shift+5(%)</span></span><br></pre></td></tr></table></figure><p>是不是很舒服？赶紧试试其他命令吧！<br>tmux更多命令详见：<a href="http://louiszhai.github.io/2017/09/30/tmux/" target="_blank" rel="noopener">Tmux使用手册</a></p><h1 id="安装Oh-My-Tmux"><a href="#安装Oh-My-Tmux" class="headerlink" title="安装Oh My Tmux"></a>安装Oh My Tmux</h1><p>虽然安装了tmux，但是是不是感觉<code>ctrl + b</code>不太好按？我们可以更改tmux的配置文件来修改默认前置，但在这篇博客里不会分享，喜欢折腾的玩家请自行google解决。在这里我介绍一个已经配置好的tmux：oh my tmux。这里是它的github链接：<a href="https://github.com/gpakosz/.tmux" target="_blank" rel="noopener">Oh My Tmux</a>。可以看到这个tmux界面很炫酷有木有。我们赶紧来试试吧！</p><p>安装命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git</span><br><span class="line">ln -s -f .tmux/.tmux.conf</span><br><span class="line">cp .tmux/.tmux.conf.local .</span><br></pre></td></tr></table></figure><p>重启你的终端，在使用tmux，是不是已经看到效果了？当然，如果你不满足于此，可以通过查阅官方文档来自己打造一个适合自己的tmux配置。另外tmux配合zsh也可以让你的终端看起来更漂亮，tmux还可以与vim结合起来做一个IDE。多去尝试吧！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;使用tmux让你爱上终端吧！&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://askylin.top/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://askylin.top/tags/Linux/"/>
+    
+      <category term="bash" scheme="http://askylin.top/tags/bash/"/>
+    
+  </entry>
   
   <entry>
     <title>Deep Learning(1)</title>
@@ -106,9 +130,9 @@
     
       <category term="DataStructure" scheme="http://askylin.top/tags/DataStructure/"/>
     
-      <category term="c++" scheme="http://askylin.top/tags/c/"/>
-    
       <category term="c" scheme="http://askylin.top/tags/c/"/>
+    
+      <category term="c++" scheme="http://askylin.top/tags/c/"/>
     
   </entry>
   
