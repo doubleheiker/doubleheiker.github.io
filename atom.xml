@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://askylin.top/"/>
-  <updated>2019-12-31T14:06:20.687Z</updated>
+  <updated>2020-05-22T09:22:34.234Z</updated>
   <id>http://askylin.top/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Logical Address?Linear Address?Virtual Address?</title>
+    <link href="http://askylin.top/2020/05/22/Address/"/>
+    <id>http://askylin.top/2020/05/22/Address/</id>
+    <published>2020-05-22T02:59:09.000Z</published>
+    <updated>2020-05-22T09:22:34.234Z</updated>
+    
+    <content type="html"><![CDATA[<hr><blockquote><p>最近在理解计算机内存管理的时候，又看到了这三个名词，当初在学计算机组成原理的时候就有点绕，现在重新来理解，发现网上很多blog说法都不一致，于是重新翻阅《深入理解计算机系统》、《计算机系统基础》以及Intel IA-32手册，发现还是有说的不甚清晰的地方，于是和老师以及同好讨论，最终得出了一个比较合理的概念区分。</p></blockquote><hr><p>先说结论：虚拟地址（虚地址，Virtual Address）在不同的情境下代表不同的意思：</p><ul><li>在<strong>段页式存储</strong>中，虚地址既可以指作<strong>线性地址</strong>（Linear Address），也可以指做<strong>逻辑地址</strong></li><li>在<strong>页式存储和段式存储</strong>中，虚地址指作<strong>逻辑地址</strong>（Logical Address）<br>因此，为了不引起混淆，建议尽量不使用虚拟地址，其本身就是一个比较笼统模糊的概念，感觉就是相对物理地址而言的一个称呼。<br>在本文，规定三个意义明确的地址：逻辑地址、线性地址、物理地址，方便后续解释。</li></ul><hr><h1 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h1><p>CPU地址总线传来的地址，由硬件电路控制。</p><h1 id="逻辑地址"><a href="#逻辑地址" class="headerlink" title="逻辑地址"></a>逻辑地址</h1><p>由程序中或者指令中给出的访内地址。</p><h1 id="线性地址"><a href="#线性地址" class="headerlink" title="线性地址"></a>线性地址</h1><p>在段页式存储中，才有线性地址这个概念。是逻辑地址转化到物理地址的中间产物。</p><ul><li>在段式存储中，逻辑地址经过段式管理部件，将其映射为一个线性地址，此时这个线性地址就是物理地址；</li><li>若是在段页式存储中，逻辑地址经过段式管理部件，先被映射为线性地址，然后线性地址通过页式管理部件，被映射成物理地址。</li></ul><hr><h1 id="虚拟地址"><a href="#虚拟地址" class="headerlink" title="虚拟地址"></a>虚拟地址</h1><p>在讨论虚拟地址到底是什么之前，我们先来看三种方式下的地址转换：</p><h2 id="段式"><a href="#段式" class="headerlink" title="段式"></a>段式</h2><img src="/2020/05/22/Address/段式.png"><h2 id="页式"><a href="#页式" class="headerlink" title="页式"></a>页式</h2><img src="/2020/05/22/Address/页式.png"><h2 id="段页式"><a href="#段页式" class="headerlink" title="段页式"></a>段页式</h2><img src="/2020/05/22/Address/段页式.png"><p>以上图片来源于《计算机系统基础》和《计算机系统结构》，由图我们可以看出，无论是什么模式下，逻辑地址都可以被称之为虚拟地址（VA），然后由于线性地址其实是一个逻辑地址到物理地址变化的中间产物，可以把线性地址理解为页式存储中的逻辑地址，因此很多说法中，线性地址也被叫做虚地址。</p><hr><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总的来说，虚地址就是一个笼统的概念，以后遇到了就按情况理解，自己能够分清楚到底是在讲逻辑地址还是线性地址就好，个人倾向于不用虚拟地址这个概念（笑）。</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;逻辑、线性、虚拟地址概念区分&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="ICS" scheme="http://askylin.top/categories/ICS/"/>
+    
+    
+      <category term="ICS" scheme="http://askylin.top/tags/ICS/"/>
+    
+      <category term="Storage" scheme="http://askylin.top/tags/Storage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Virtual Memory</title>
+    <link href="http://askylin.top/2020/05/22/ComputerStorage/"/>
+    <id>http://askylin.top/2020/05/22/ComputerStorage/</id>
+    <published>2020-05-22T01:24:31.000Z</published>
+    <updated>2020-06-30T07:12:07.038Z</updated>
+    
+    <content type="html"><![CDATA[<hr><blockquote><p>对虚拟存储器管理方式和Cache的知识需要了解逻辑地址、线性地址、物理地址的相关概念，若不清楚详见<a href="http://askylin.top/2020/05/22/Address/">Logical Address?Linear Address?Virtual Address?</a></p></blockquote><hr><h1 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h1><p>虚拟存储器通过增设<strong>地址映像机构</strong>来实现程序在主存中的定位。将程序分割成若干个<strong>段</strong>或<strong>页</strong>，用相应的映像表指明该程序的某段或某页是否已装入主存。若已装入，同时指明其在主存中的起始地址；若未装入，就去辅存（磁盘）中调段或页，将其装入主存后再在映像表中建立好程序空间和实存空间的地址映像关系。<br>程序执行时先查映像表，将程序（虚）地址变成实（主存）地址后再访问。</p><h2 id="段式管理"><a href="#段式管理" class="headerlink" title="段式管理"></a>段式管理</h2><p><strong>原理</strong>：程序是模块化的，一个程序总可以分解为多个在逻辑上相对独立的模块，每一个模块就是单独的一个<strong>段</strong>，段的起点以0相对编址。当某个段由辅存调入主存，系统赋予该段一个基址，由基址+单元在段内的相对位移就可以形成主存中的实际地址。主存是按段分配的存储管理方式。</p><p><strong>段表</strong>：每个在主存中的程序都有一个段（映像表）表来存放该程序各段在主存中的状况。<strong>段表本身也是一个段</strong>，一般在主存，也可以在辅存，需要时再调入主存。</p><p><strong>段表项</strong>：段表中每一项（行），描述该道程序一个段的基本情况。</p><p><strong>段表基址寄存器</strong>：主存中有N道程序，可设N个段表寄存器。对于每个程序，由基号（程序号）指出使用哪一个段表基址寄存器，然后段表基址寄存器中的段表基址字段指向程序在主存的起始地址，段表长度字段指明该程序所用段表的行（段）数。</p><p>段式管理的地址转换过程如下图：</p><img src="/2020/05/22/ComputerStorage/段式.png"><p>对图中一些信息做一点解释：</p><ul><li>图示的段表基址寄存器，是由N个段表基址寄存器构成，每一行都是一个寄存器。</li><li>图示的段表，其段名若就是程序每个段的序号，则可以省略。</li><li>图示的段表中装入位为1表示已装入主存，访问方式在一般情况下，为空也不能省略。</li><li>由图可知，段式管理下，虚地址被分为三各部分：基号（程序号），段号，段内位移</li><li>由图可知段式管理的地址转化流程为：<strong>虚地址-&gt;段基址寄存器-&gt;段表-(段起始地址+虚地址中段内位移)-&gt;主存地址</strong>。</li></ul><h2 id="页式管理"><a href="#页式管理" class="headerlink" title="页式管理"></a>页式管理</h2><p><strong>原理</strong>：把主存和程序空间都机械的分成固定大小的页，按页顺序编号。这样<strong>主存地址</strong>就由实页号<code>np</code>和页内位移<code>nr</code>两个字段组成。（划重点，待会会将其与段式管理比较）</p><p><strong>页表</strong>、<strong>页表项</strong>、<strong>页表基址寄存器</strong>类比段式管理</p><p>页式管理的地址转换过程（最基础的一种）如下图：</p><img src="/2020/05/22/ComputerStorage/页式.png"><p>下面对该图进行一些解释：</p><ul><li>在页表中，因为页式存储中程序的起点必处于一个页面的起点，用户程序中每一个虚地址就由<strong>虚拟页号N’v</strong>字段和<strong>页内位移Nr</strong>字段组成。</li><li>虚存和主存的页面大小一致，因此页表中只需记录<strong>虚拟页号N’v</strong>和<strong>主存页号nv</strong>的对应关系，不用保存页内位移。而且虚页号与页表行号对应，页表中不需要专门的虚页号字段。</li><li>因为虚地址中的页内位移就是实地址中的页内位移，因此页式管理只需要将<strong>主存实页号</strong>与<strong>页内位移</strong>拼起来就得到了主存地址。（回到刚刚划重点的地方，因为主存地址就由这两个字段组成，因此拼接起来就是主存地址了；而段式管理中，是通过<code>基址+段内偏移</code>的运算，计算出主存地址。）</li><li>由页式和段式的图可以看出，段式管理实际上用了两个加法器，而页式只用了一个，这也是页式比段式存储更快一点的原因。</li><li>同样，页表也存在于主存中。</li></ul><h3 id="地址的映像和变换"><a href="#地址的映像和变换" class="headerlink" title="地址的映像和变换"></a>地址的映像和变换</h3><p>虚存一般比实际主存空间大很多，即<code>N&#39;v &gt; nv</code>，因此虚地址空间映射到实地址空间必然会进行压缩，其示意图如下：</p><img src="/2020/05/22/ComputerStorage/压缩.png"><p>而且，页式存储器一般都采用<strong>全相联映像</strong>：让每一道程序的任何虚页可以映射到任何实页位置，如下图所示：</p><img src="/2020/05/22/ComputerStorage/全相联.png"><p>由于主存中装入位为1的行最多只有<code>2^nv</code>行，使得页表中绝大部分实页号字段和其他字段都成为无用的空间，大大降低了页表空间的利用率，因此，有两种方式来提高页表的空间利用率。</p><ol><li><strong>目录表法</strong></li></ol><p>该方法是把页表压缩成只存放已装入主存的虚页，如图：</p><img src="/2020/05/22/ComputerStorage/目录表.png"><p>需要注意的是，该表与上面的页表有所不同，该表是通过虚地址的基号字段和用户虚页号一起，去相联比较页表中是否有满足的项。（而普通的是通过页表基地址+用户虚页号直接得到表中位置）。但该方式查表速度慢，造价较贵，一般不使用目录表来存储全部虚页号和实页号的对应关系，但它可以用来提高地址变换速度。</p><ol start="2"><li><strong>辅存实地址</strong></li></ol><p>将页表中装入位为0的行用实页号字段存放该程序此虚页在辅存中的实地址，以便掉页时实现用户虚页号到辅存实地址的变换。这种方法在辅存实地址位数与用户虚页号位数相差太大时就很难利用。</p><h3 id="页面替换算法"><a href="#页面替换算法" class="headerlink" title="页面替换算法"></a>页面替换算法</h3><p>当主存装满时，这时又有新的指令或数据（不在主存），这是页面就会失效，需要从辅存中调页替换。</p><p><strong>随机算法（RAND）</strong>：采用软或硬件随机数产生器产生要被替换页的页号<br><strong>先进先出算法（FIFO）</strong>：选择最早装入主存的页作为被替换页<br><strong>近期最少使用算法（LRU）</strong>：选择近期最少访问的页作为被替换页</p><p><strong>主存页面表</strong>：每一行用于记录主存中各页的使用情况，该表整个系统只有一个。注意：<strong>不是页表！不是页表！不是页表！</strong></p><img src="/2020/05/22/ComputerStorage/页面表.png"><h3 id="页式虚拟存储器工作全过程"><a href="#页式虚拟存储器工作全过程" class="headerlink" title="页式虚拟存储器工作全过程"></a>页式虚拟存储器工作全过程</h3><img src="/2020/05/22/ComputerStorage/过程.png"><h3 id="快表（TLB）"><a href="#快表（TLB）" class="headerlink" title="快表（TLB）"></a>快表（TLB）</h3><p>为了减少访存次数，往往把页表中最活跃的几个页表项复制到高速缓存中，这种在高速缓存中的页表项组成的页表就称位快表。这样，在地址转换中，同时查页表和快表，若在快表中查到，则停止查找页表；若快表中没有查到，则在页表中查，查到后访存并将此虚页号与实页号的对应关系送入快表。这里也需要用替换算法替换快表中已不用的内容。</p><p>快表其实可以看成一个目录表，其与慢表（页表）的内部地址变换如下图：</p><img src="/2020/05/22/ComputerStorage/快表慢表.png"><p>为了提高快表的命中率和查表速度，可以用散列方法实现按内容查找，然后找到对应表项还需要与虚页号<code>Nv</code>对比，一致则形成<code>nv</code>继续后续操作，否则出现了散列冲突，得去慢表中查找。</p><img src="/2020/05/22/ComputerStorage/快表.png"><p>在IBM370/168中，为了减少散列冲突，快表中每个地址单元中存放多对虚页号与实页号的映像关系，用两套相等电路比较，只有都不相符，才是不命中，再去慢表中获得<code>nv</code>。另外，该虚拟存储器的页表基址寄存器是一个相联寄存器，其行数并不是计算机允许的最大用户数，而是计算机上同时运行的用户的最大个数（比如最多允许<code>2^24</code>个用户，但实际同时存在的用户最多只有六个）。这样大大减少了查询时间，使获取<code>nv</code>更快。</p><img src="/2020/05/22/ComputerStorage/IBM.png"><h3 id="两级页表和多级页表"><a href="#两级页表和多级页表" class="headerlink" title="两级页表和多级页表"></a>两级页表和多级页表</h3><p>一级页表所占内存连续空间太大，因此，提出了两级页表甚至多级页表的概念。</p><p>两级页表分为<strong>页目录表</strong>和<strong>页表</strong>，页目录表中每一行称为<strong>页目录项</strong>，用于记录每一个页表所在的内存的初始位置；页表中的页表项，则和一级页表一样，用于记录<code>nv</code>等信息。这时候，页表就相当于被离散化，就能够提高内存空间利用率。</p><img src="/2020/05/22/ComputerStorage/二级页表.png"><h2 id="段页式管理"><a href="#段页式管理" class="headerlink" title="段页式管理"></a>段页式管理</h2><p><strong>原理</strong>：把主存等分为固定的页，程序按模块分段，每个段又分成与主存页面大小相同的页。每到程序通过一个段表和相应的一组页表定位。</p><p>段页式管理的定位映像机构及其地址的变化过程如下图：</p><img src="/2020/05/22/ComputerStorage/段页式.png"><p>其中通过段表得到的就是线性地址，然后线性地址经过页式管理变为主存地址。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;虚拟存储器&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="ICS" scheme="http://askylin.top/categories/ICS/"/>
+    
+    
+      <category term="ICS" scheme="http://askylin.top/tags/ICS/"/>
+    
+      <category term="Storage" scheme="http://askylin.top/tags/Storage/"/>
+    
+  </entry>
   
   <entry>
     <title>忙里偷闲乐悄生</title>
