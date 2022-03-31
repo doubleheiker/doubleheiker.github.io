@@ -97,7 +97,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrEP1l.uL2*pg0p8wyDrivSiB1Exf49K.UJEWbTDzKPJk2qAMyajUg3RDpF0675xpZj8pJcE6p0Qz3cDXRsjXP4cg!/r">
 <meta property="article:published_time" content="2021-09-24T11:22:56.000Z">
-<meta property="article:modified_time" content="2021-09-30T05:40:40.643Z">
+<meta property="article:modified_time" content="2021-10-02T17:04:33.836Z">
 <meta property="article:author" content="asKylin">
 <meta property="article:tag" content="LDP">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -205,7 +205,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -215,7 +215,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -225,7 +225,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -235,7 +235,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -408,7 +408,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 target="_blank" href="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrEP1l.uL2*pg0p8wyDrivSiB1Exf49K.UJEWbTDzKPJk2qAMyajUg3RDpF0675xpZj8pJcE6p0Qz3cDXRsjXP4cg!/r" rel="gallery_cku70qj0c000picveajts5c2w noopener"
+                 target="_blank" href="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrEP1l.uL2*pg0p8wyDrivSiB1Exf49K.UJEWbTDzKPJk2qAMyajUg3RDpF0675xpZj8pJcE6p0Qz3cDXRsjXP4cg!/r" rel="gallery_cl1eckvqg000s60veecv89cgq noopener"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrEP1l.uL2*pg0p8wyDrivSiB1Exf49K.UJEWbTDzKPJk2qAMyajUg3RDpF0675xpZj8pJcE6p0Qz3cDXRsjXP4cg!/r" itemprop="contentUrl"/>
               </a>
@@ -526,7 +526,7 @@ f'=\frac{p-1+f}{2p-1}</script><p><strong>C. 问题定义</strong></p>
 F_1(r)=\frac{1}{d}\sum_{k\in\mathcal{K}}|m_k-m_k^{(r)}|</script><p>因为每次通信的开销是一个常数值，所以有：</p>
 <script type="math/tex; mode=display">
 F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相对越来越不重要，而$F_2(r)$以恒定比例$A_0$增长。因此，当$F_1(r)$的减少不能再补偿$A_0$的增加时，$F(r)$达到全局最小值。当第一个$F(r)-F(r-1)=A_0-\frac{1}d\sum_{k\in\mathcal{K}}|m_k^{(r)}-m_k^{(r-1)}|\geq0$时，也就是说第一次出现第$r$轮迭代产生的开销大于第$r-1$时，就选取迭代次数为$r$，此时的总体开销最小。（论文未严格证明，只是上式很容易被算法实现）</p>
-<p>PrivKVM+算法在隐私预算分配时，使用PBAt策略，该策略使用了“指数衰减”策略（$y=a(1-b)^x$）动态地将剩余的隐私预算的$\frac{1}t$分配给当前迭代（这样一开始的t比较大，然后逐渐变小，也就是说一开始分配的隐私预算小，收敛慢，到后面分配的隐私预算越来越大，估计逐渐收敛，这样会比较精确。但文章中没有说明初始t值的选取，该值的估计个人认为又是一个待研究的问题）。t 可以是任何大于1的值。t越小，分配给当前迭代的隐私预算就越大，估计收敛得更快。但如果t太接近1，则收敛可能会过早，因为大多数隐私预算都浪费在早期迭代中，其中估计的均值对于下一次迭代来说就十分不准确了。</p>
+<p>PrivKVM+算法在隐私预算分配时，使用PBAt策略，该策略使用了“指数衰减”策略（$t=a(1-b)^x$）动态地将剩余的隐私预算的$\frac{1}t$分配给当前迭代（这样一开始的t比较大，然后逐渐变小，也就是说一开始分配的隐私预算小，收敛慢，到后面分配的隐私预算越来越大，估计逐渐收敛，这样会比较精确。但文章中没有说明初始t值的选取，该值的估计个人认为又是一个待研究的问题）。t 可以是任何大于1的值。t越小，分配给当前迭代的隐私预算就越大，估计收敛得更快。但如果t太接近1，则收敛可能会过早，因为大多数隐私预算都浪费在早期迭代中，其中估计的均值对于下一次迭代来说就十分不准确了。</p>
 <img src="/2021/09/24/Paper-PrivKV/PrivKVM+.png" class="">
 <p>第2步与LPP算法不太一样，这里是直接设置一个初始$\tilde{m}=1$，论文没有说明具体这样做的理由。</p>
 <hr>
@@ -616,7 +616,7 @@ F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相�
   <p><span>本文标题:</span><a href="/2021/09/24/Paper-PrivKV/">PaperRecord - PrivKV</a></p>
   <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
   <p><span>发布时间:</span>2021年09月24日 - 19:09</p>
-  <p><span>最后更新:</span>2021年09月30日 - 13:09</p>
+  <p><span>最后更新:</span>2021年10月03日 - 01:10</p>
   <p><span>原始链接:</span><a href="/2021/09/24/Paper-PrivKV/" title="PaperRecord - PrivKV">http://askylin.top/2021/09/24/Paper-PrivKV/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://askylin.top/2021/09/24/Paper-PrivKV/"  aria-label="复制成功！"></i></span>
   </p>
@@ -672,6 +672,10 @@ F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/21/DP-basic/" rel="prev" title="Basic Differential Privacy">
+                Basic Differential Privacy <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -756,9 +760,9 @@ F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相�
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -780,7 +784,7 @@ F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -883,7 +887,7 @@ F_2(r)=A_0\cdot r</script><p>当迭代次数$r$增大，$F_1(r)$减少并且相�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

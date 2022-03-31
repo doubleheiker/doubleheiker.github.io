@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DP," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="asKylin" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="差分隐私基础介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Differential Privacy">
+<meta property="og:url" content="http://askylin.top/2021/10/21/DP-basic/index.html">
+<meta property="og:site_name" content="asKylin">
+<meta property="og:description" content="差分隐私基础介绍">
+<meta property="og:locale">
+<meta property="og:image" content="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrECKFsm7Er6VyQKC9fusmZ.JQBgY3DovsjGsPX6AHEmaKfY1cF2BnYgT7SPKK67V6XvWaADfoZicucRAnqbQSy10!/r">
+<meta property="article:published_time" content="2021-10-21T00:34:01.000Z">
+<meta property="article:modified_time" content="2022-03-31T02:52:35.865Z">
+<meta property="article:author" content="asKylin">
+<meta property="article:tag" content="DP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrECKFsm7Er6VyQKC9fusmZ.JQBgY3DovsjGsPX6AHEmaKfY1cF2BnYgT7SPKK67V6XvWaADfoZicucRAnqbQSy10!/r">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://askylin.top/2021/10/21/DP-basic/"/>
+
+
+
+
+
+  <title>Basic Differential Privacy | asKylin</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/doubleheiker" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#07B39B; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">asKylin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The more a man learns, the more he knows his ignorance.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://askylin.top/2021/10/21/DP-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/fz.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="asKylin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Basic Differential Privacy</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-10-21T08:34:01+08:00">
+                2021-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/private-protection/" itemprop="url" rel="index">
+                    <span itemprop="name">private protection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  <center>差分隐私基础介绍</center>
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 target="_blank" href="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrECKFsm7Er6VyQKC9fusmZ.JQBgY3DovsjGsPX6AHEmaKfY1cF2BnYgT7SPKK67V6XvWaADfoZicucRAnqbQSy10!/r" rel="gallery_cl1eckvpe000560vecy8b3p60 noopener"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://r.photo.store.qq.com/psc?/V13BnVsC23MbK8/TmEUgtj9EK6.7V8ajmQrECKFsm7Er6VyQKC9fusmZ.JQBgY3DovsjGsPX6AHEmaKfY1cF2BnYgT7SPKK67V6XvWaADfoZicucRAnqbQSy10!/r" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <hr>
+<blockquote>
+<p>本篇文章主要是面向对差分隐私零基础的朋友，我在介绍差分隐私相关的基础知识时尽可能地用简单的语言去讲解，因此准确性和严格性可能不太高，已经熟悉差分隐私的大佬们可以忽略该文章，也欢迎提出意见和建议！</p>
+</blockquote>
+<hr>
+<h1 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h1><p>差分隐私是什么？我们为什么关注差分隐私？这里以一个例子来简单理解下：大家应该都知道QQ群中有群成员概况，可以显示群成员在全国各省市的分布数量、男女比例和具体人数，甚至还有单身数量的统计（这个现在的版本好像不会显示了）。假设张三在某一个QQ群中，平时就喜欢查看成员概况，然后某一天，你加入了这个群，张三看到群成员概况里面，男生或者女生人数突然增加了1，海淀区和90后人数增加了1人，还发现居然单身的人数又多了一个，然后一看群，发现你加进群了，于是对他来说，奇怪的知识又增加了，原来你是一只单身狗。但对于你来说，你也许并不想让你单身的信息被别人知道，但因为上面发生的情况，你的信息就无意识的被暴露了。那为了避免这种事情的发生，有什么办法呢？差分隐私就应运而生了。它就是用来解决这类问题，让攻击者不会因为新样本的出现而推测到新的信息。</p>
+<hr>
+<h1 id="差分隐私的定义"><a href="#差分隐私的定义" class="headerlink" title="差分隐私的定义"></a>差分隐私的定义</h1><p>对于随机函数$M$，$P_m$是$M$的所有可能的输出结果的集合，$Pr[\cdot]$表示概率，对于任意两个只相差一项纪录的数据集，即相邻数据集$D$和$D’$，$P_m$的任意子集$S_m$，算法$M$满足：</p>
+<script type="math/tex; mode=display">
+Pr[M(D)\in S_m]\leq e^{\epsilon}Pr[M(D')\in S_m]</script><p>那么就说明该函数提供$\epsilon-$差分隐私保护。</p>
+<p>我觉得应该不止我一个人第一次看到这个数学定义会感觉有点懵吧，用人类能听懂的话和这个图来理解，就是两个相差一条记录的数据集，随机函数看作查询函数，对这两个数据集进行查询，然后我们把查询结果映射到概率分布上，这两条曲线就是查询结果映射后的概率分布曲线。如果两次结果的概率分布非常接近，那么就说它满足$\epsilon-$差分隐私保护。这个接近的程度是由这个$\epsilon$决定的，我们称之为隐私预算。由定义的不等式可以看出，隐私预算越小，分布越接近，保护程度越大，但反过来想，要使分布越接近，那么势必会引入较大噪声，数据精度会受到更大的影响。</p>
+<img src="/2021/10/21/DP-basic/%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6.png" class="">
+<p>就刚刚张三那个例子而言，你加入群前，张三看到这个单身人数是56个，你加进去之后，张三看到的单身人数还可能是56个，这样就保护了你单身这个个人隐私。定义里面的数学不等式，是以两个$D$和$D’$分布尽可能的接近为目的来计算得到的，利用了信息论中的KL散度和Max散度推导而来。感兴趣的同学可以自行深入了解。</p>
+<p>那么关于这个定义，还有最后一个问题就是，为什么$\epsilon$被称为隐私预算呢？既然被称为预算，那么就说明差分隐私保护是会被消耗的，我们来简单的理解一下：我们知道查询结果是一个概率分布了，那作为攻击者来说，我可以不断地进行同一个查询，如果查询次数足够多的话，攻击者可以猜到结果的概率分布，进而推测出准确值，那么说明丧失了隐私保护能力了。那么每一次查询都可以看作消耗了$\epsilon$的隐私保护，我们固定一个总的能被允许的消耗，而$\epsilon$越小，那么表示会有更多次查询才会使隐私保护能力丧失。这里也可以看出差分隐私保护也许和我们日常理解的隐私保护不同，它是有限制的，会被消耗的，不是一旦使用了差分隐私保护机制就能够永久保护隐私的。</p>
+<img src="/2021/10/21/DP-basic/%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E6%B6%88%E8%80%97.png" class="">
+<p>从定义就可以看出，差分隐私能够防止攻击者拥有大量背景知识进而推测出隐私信息，同时其建立在严格的数学定义上，提供了可量化评估的方法。</p>
+<hr>
+<h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><p>差分隐私还有一些有趣的性质：串行组合、并行组合、变换不变、中凸；</p>
+<p>其中串行组合的意思就是如果k个差分隐私保护算法同时作用于同一个数据集，那么最终的隐私预算就等价于这k个算法的预算和；这也很好理解，假设第一次加噪声处理后有$\epsilon$的预算了，第二次的时候又进行了一次差分隐私保护处理，又添加了噪声，那么噪声就更大了，那么隐私预算也应该相应的增加。</p>
+<img src="/2021/10/21/DP-basic/%E4%B8%B2%E8%A1%8C.png" class="">
+<p>并行组合就是多个算法分别作用在同一个数据集上的多个子集上，最终隐私预算等价于这些算法中隐私预算最大的一个。</p>
+<img src="/2021/10/21/DP-basic/%E5%B9%B6%E8%A1%8C.png" class="">
+<p>变换不变：对于任意算法A1满足ε-差分隐私，对于任意算法A2，有A(·)=A2(A1(·))满足ε-差分隐私。</p>
+<p>中凸：两个算法都满足ε-差分隐私，这两个算法分别以p和1-p的概率使用，构成一个机制，则该机制满足ε-差分隐私。</p>
+<hr>
+<h1 id="常见机制"><a href="#常见机制" class="headerlink" title="常见机制"></a>常见机制</h1><p>Laplace机制（针对数值型数据）和指数机制（针对离散性数据），其核心思想就是对查询结果添加适量扰动、噪声，来满足差分隐私保护。其中，对加入噪声进行的度量由<strong>敏感度</strong>来决定，敏感度指数据集中删除任意一条记录对查询结果产生的最大影响：</p>
+<script type="math/tex; mode=display">
+\Delta f = \max_{D,D'}||f(D)-f(D')||_1</script><p>敏感度又分为：</p>
+<ul>
+<li><p>全局敏感度：核心是对于查询函数的作用域上，任意相邻数据集删除任意一条记录对查询结果产生的最大影响。只与查询函数本身有关。</p>
+</li>
+<li><p>局部敏感度：对于给定的相邻数据集，删除任意一条记录对查询结果产生的最大影响。与查询函数本身和选定的数据集有关</p>
+</li>
+</ul>
+<p>敏感度越大，所需要加入的噪声也就越大。</p>
+<p><strong>Laplace机制</strong></p>
+<p>Laplace机制如下公式所示，其中，f(D)表示的是查询函数， 表示的是满足Laplace分布的随机噪声， M(D)表示的是最后的返回结果。</p>
+<script type="math/tex; mode=display">
+\mathcal{M}=f(D)+\text{Lap}(\frac{\Delta f}{\varepsilon})</script><p>特点：适合数值型数据，ε越小，添加的噪声越大。</p>
+<p><strong>指数机制</strong></p>
+<p>以</p>
+<script type="math/tex; mode=display">
+M(D,q,R_i)\sim e^{\frac{\varepsilon q(D,R_i)}{2\Delta q}}</script><p>的概率输出结果$R_i$。其中$q$表示一个打分函数，$D$表示数据集，$R_i$表示一个输出结果，这个函数的意思就是对$D$的输出结果打分。得分高的输出概率高，得分低的输出概率低。</p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------Thanks for Reading-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2021/10/21/DP-basic/">Basic Differential Privacy</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+  <p><span>发布时间:</span>2021年10月21日 - 08:10</p>
+  <p><span>最后更新:</span>2022年03月31日 - 10:03</p>
+  <p><span>原始链接:</span><a href="/2021/10/21/DP-basic/" title="Basic Differential Privacy">http://askylin.top/2021/10/21/DP-basic/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://askylin.top/2021/10/21/DP-basic/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/24/Paper-PrivKV/" rel="next" title="PaperRecord - PrivKV">
+                <i class="fa fa-chevron-left"></i> PaperRecord - PrivKV
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12/31/Summary2021/" rel="prev" title="恒与变">
+                恒与变 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bbae15ea0175a77" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/fz.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/doubleheiker" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/Kelly_Young" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://milkice.me/" title="Milkice" target="_blank">Milkice</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hirworld.xyz/" title="hirworld" target="_blank">hirworld</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://desperadoccy.github.io/" title="desperadoccy" target="_blank">desperadoccy</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">一个例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">差分隐私的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%9C%BA%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">常见机制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">asKylin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1},"log":false});</script></body>
+</html>
